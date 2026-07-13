@@ -155,7 +155,37 @@
             color: var(--text-muted); 
             border-bottom-color: var(--accent-white);
         }
+        /* Resim ve metni yan yana getiren esnek kutu */
+        .log-content {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
 
+        /* Küçük ekranlarda (Mobil) resmin alta kayması için */
+        @media (max-width: 600px) {
+            .log-content {
+                flex-direction: column-reverse;
+            }
+        }
+
+        /* Resmin boyutu ve şık durması için ayarlar */
+        .log-image {
+            width: 120px; /* İstediğiniz genişliğe göre ayarlayabilirsiniz */
+            height: auto;
+                border: 1px solid var(--border-gray);
+                border-radius: 4px;
+                padding: 4px;
+                background-color: rgba(255, 255, 255, 0.02);
+                filter: grayscale(30%); /* Sitenin monokrom havasına uyması için hafif soldurma */
+                transition: filter 0.3s ease;
+            }
+
+            /* Fareyle üzerine gelindiğinde orijinal rengine dönsün */
+            .log-image:hover {
+                filter: grayscale(0%);
+            }
         /* Alt Bilgi */
         footer {
             margin-top: 80px;
@@ -180,19 +210,22 @@
         </header>
 
         <main class="log-timeline">
-
+            
             <article class="log-item">
                 <div class="log-meta">
                     <span>date: 14.07.26 01:19</span>
                     <span>// REDSTONE SYSTEMS: FIRST LOOK</span>
                 </div>
                 <h2 class="log-title">RS-01. Basic Components and Their Usage </h2>
-                <p class="log-text">
-                    Learnt Components:
-                    Redstone Dust, Redstone Torch, Redstone Repeater, Redstone Comparator, Block of Redstone, Hard/Softpowered blocks.
-                    
-                    Save file can be achieved in: <a href="https://github.com/yunhanref/Minecraft-Redstone-Systems-Practice" target="_blank">github</a>
-                </p>
+    
+                <div class="log-content">
+                    <div class="log-text">
+                        Learnt Components:<br>
+                        Redstone Dust, Redstone Torch, Redstone Repeater, Redstone Comparator, Block of Redstone, Hard/Softpowered blocks.<br><br>
+                        Save file can be achieved in: <a href="https://github.com/yunhanref/Minecraft-Redstone-Systems-Practice" target="_blank">github</a>
+                    </div>
+                    <img src="redstone-resminizin-yolu.png" alt="Redstone Systems" class="log-image">
+                </div>
             </article>
             
             <article class="log-item">
