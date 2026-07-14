@@ -150,7 +150,11 @@
             border-bottom: 1px dashed var(--text-muted); 
             transition: all 0.2s ease;
         }
-
+        .buyuk-cumle {
+            font-size: 24px; /* Metin boyutunu buradan ayarlayabilirsin (piksel, em, rem vb.) */
+            font-weight: bold; /* İstersen daha çok dikkat çekmesi için kalın yapabilirsin */
+        }
+        
         a:hover {
             color: var(--text-muted); 
             border-bottom-color: var(--accent-white);
@@ -219,9 +223,9 @@
     
                 <div class="log-content">
                     <div class="log-text">
-                        LEARNT OBJECTIVES:<br>
+                        <span class="buyuk-cumle">LEARNT OBJECTIVES</span>:<br>
                         Functions, loops, FindFirstChild, WaitForChild, PlayerAdded event, PlayerRemoving event, Touched event<br>
-                        PROJECTS:<br>
+                        <span class="buyuk-cumle">EXERCISES:</span>:<br>
                         Simple obby including a door opening button, lava floor, falling stairs.
                         Save file can be achieved in: <a href="https://github.com/yunhanref" target="_blank">github</a>
                     </div>
