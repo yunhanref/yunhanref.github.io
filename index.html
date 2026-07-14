@@ -18,14 +18,14 @@
         body {
             background-color: var(--bg-dark);
             color: var(--text-main);
-            font-family: 'Courier New', Courier, monospace; /* Teknolojik / Terminal havası */
+            font-family: 'Courier New', Courier, monospace;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* Daha Belirgin Yıldız Animasyonlu Arka Plan */
+        /* Yıldız Animasyonlu Arka Plan */
         body::before {
             content: "";
             position: fixed;
@@ -41,7 +41,7 @@
             background-size: 200px 200px;
             animation: stars-drift 100s linear infinite;
             z-index: -1;
-            opacity: 0.85; /* Solukluğu kaldırıp daha belirgin hale getirdik */
+            opacity: 0.85; 
         }
 
         @keyframes stars-drift {
@@ -66,7 +66,7 @@
         header {
             border-bottom: 1px solid var(--border-gray);
             padding-bottom: 30px;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
         }
 
         .logo {
@@ -80,7 +80,6 @@
             gap: 10px;
         }
 
-        /* Küçük bir sinyal animasyonu */
         .status-dot {
             width: 6px;
             height: 6px;
@@ -102,6 +101,55 @@
             margin-top: 10px;
         }
 
+        /* YENİ: Karşılama Ekranı ve Butonlar */
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 40px;
+            border-bottom: 1px dashed var(--border-gray);
+        }
+
+        .welcome-title {
+            font-size: 2.2rem;
+            color: var(--accent-white);
+            margin: 0 0 10px 0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .welcome-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .category-btn {
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-gray);
+            color: var(--text-muted);
+            font-family: inherit;
+            padding: 20px 10px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            border-color: var(--accent-white);
+            color: var(--accent-white);
+            background-color: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+        }
+
         /* Günlük / Blog Yazıları Bölümü */
         .log-timeline {
             display: flex;
@@ -113,10 +161,16 @@
             position: relative;
             padding-left: 25px;
             border-left: 1px solid var(--border-gray);
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        /* Hover durumunda çizginin beyazlaşması efekti */
+        /* JavaScript için gizleme sınıfı */
+        .log-item.hidden {
+            display: none !important;
+        }
+
         .log-item:hover {
             border-left-color: var(--accent-white);
         }
@@ -139,27 +193,27 @@
         .log-text {
             font-size: 0.9rem;
             line-height: 1.6;
-            color: #bcbca2; /* Hafif retro gri/beyaz */
+            color: #bcbca2; 
             margin: 0;
         }
 
-        /* Linklerin Yeni Görünüm Ayarları */
         a {
             color: var(--accent-white); 
             text-decoration: none;
             border-bottom: 1px dashed var(--text-muted); 
             transition: all 0.2s ease;
         }
+
         .buyuk-cumle {
-            font-size: 24px; /* Metin boyutunu buradan ayarlayabilirsin (piksel, em, rem vb.) */
-            font-weight: bold; /* İstersen daha çok dikkat çekmesi için kalın yapabilirsin */
+            font-size: 18px; 
+            font-weight: bold; 
         }
         
         a:hover {
             color: var(--text-muted); 
             border-bottom-color: var(--accent-white);
         }
-        /* Resim ve metni yan yana getiren esnek kutu */
+
         .log-content {
             display: flex;
             gap: 20px;
@@ -167,30 +221,30 @@
             justify-content: space-between;
         }
 
-        /* Küçük ekranlarda (Mobil) resmin alta kayması için */
         @media (max-width: 600px) {
             .log-content {
                 flex-direction: column-reverse;
             }
+            .welcome-title {
+                font-size: 1.8rem;
+            }
         }
 
-        /* Resmin boyutu ve şık durması için ayarlar */
         .log-image {
-            width: 120px; /* İstediğiniz genişliğe göre ayarlayabilirsiniz */
+            width: 120px; 
             height: auto;
-                border: 1px solid var(--border-gray);
-                border-radius: 4px;
-                padding: 4px;
-                background-color: rgba(255, 255, 255, 0.02);
-                filter: grayscale(30%); /* Sitenin monokrom havasına uyması için hafif soldurma */
-                transition: filter 0.3s ease;
-            }
+            border: 1px solid var(--border-gray);
+            border-radius: 4px;
+            padding: 4px;
+            background-color: rgba(255, 255, 255, 0.02);
+            filter: grayscale(30%); 
+            transition: filter 0.3s ease;
+        }
 
-            /* Fareyle üzerine gelindiğinde orijinal rengine dönsün */
-            .log-image:hover {
-                filter: grayscale(0%);
-            }
-        /* Alt Bilgi */
+        .log-image:hover {
+            filter: grayscale(0%);
+        }
+
         footer {
             margin-top: 80px;
             border-top: 1px solid var(--border-gray);
@@ -213,8 +267,19 @@
             <div class="subtitle">My progress about AI, Embedded Systems and Game Development</div>
         </header>
 
+        <section class="welcome-section">
+            <h1 class="welcome-title">Welcome to the Archive</h1>
+            <p class="welcome-subtitle">Select a database to access development logs.</p>
+            <div class="category-grid">
+                <button class="category-btn active" data-target="all">All Logs</button>
+                <button class="category-btn" data-target="roblox">Roblox Scripting</button>
+                <button class="category-btn" data-target="redstone">MC Redstone</button>
+                <button class="category-btn" data-target="general">General</button>
+            </div>
+        </section>
+
         <main class="log-timeline">
-            <article class="log-item">
+            <article class="log-item" data-category="roblox">
                 <div class="log-meta">
                     <span>date: 14.07.26 18:00</span>
                     <span>// ROBLOX GAME DEVELOPMENT: FIRST LOOK</span>
@@ -233,7 +298,7 @@
                 </div>
             </article>
             
-            <article class="log-item">
+            <article class="log-item" data-category="redstone">
                 <div class="log-meta">
                     <span>date: 14.07.26 01:19</span>
                     <span>// REDSTONE SYSTEMS: FIRST LOOK</span>
@@ -242,7 +307,7 @@
     
                 <div class="log-content">
                     <div class="log-text">
-                        <span class="buyuk-cumle">LEARNT COMPONENTS:</span>:<br>
+                        <span class="buyuk-cumle">LEARNT COMPONENTS:</span><br>
                         Redstone Dust, Redstone Torch, Redstone Repeater, Redstone Comparator, Block of Redstone, Hard/Softpowered blocks.<br>
                         Save file can be achieved in: <a href="https://github.com/yunhanref/Minecraft-Redstone-Systems-Practice" target="_blank">github</a>
                     </div>
@@ -250,7 +315,7 @@
                 </div>
             </article>
             
-            <article class="log-item">
+            <article class="log-item" data-category="general">
                 <div class="log-meta">
                     <span>date: 13.07.26 19:00</span>
                     <span>// ALL SOCIALS</span>
@@ -258,7 +323,7 @@
                 <h2 class="log-title">Report 03. All Social Media Accounts About The Project</h2>
                 <div class="log-content">
                     <div class="log-text">
-                        <span class="buyuk-cumle">Social Links:</span>
+                        <span class="buyuk-cumle">Social Links:</span><br>
                         Youtube: <a href="https://www.youtube.com/@YunhanrefTechnologies" target="_blank">@YunhanrefTechnologies</a> <br> 
                         Instagram: <a href="https://www.instagram.com/yun.han.ref/" target="_blank">@yun.han.ref</a> <br> 
                         Github: <a href="https://github.com/yunhanref" target="_blank">@yunhanref</a> 
@@ -267,7 +332,7 @@
                 </div>
             </article>
             
-            <article class="log-item">
+            <article class="log-item" data-category="general">
                 <div class="log-meta">
                     <span>date: 13.07.26 18:15</span>
                     <span>// CHANGES SOON</span>
@@ -281,7 +346,7 @@
                 </div>
             </article>
             
-            <article class="log-item">
+            <article class="log-item" data-category="general">
                 <div class="log-meta">
                     <span>date: 13.07.26 16:15</span>
                     <span>// SYSTEM SETUP</span>
@@ -303,5 +368,32 @@
 
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('.category-btn');
+            const logs = document.querySelectorAll('.log-item');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Aktif buton tasarımını değiştir
+                    buttons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    const targetCategory = button.getAttribute('data-target');
+
+                    // İçerikleri filtrele
+                    logs.forEach(log => {
+                        const logCategory = log.getAttribute('data-category');
+                        
+                        if (targetCategory === 'all' || targetCategory === logCategory) {
+                            log.classList.remove('hidden');
+                        } else {
+                            log.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 </html>
