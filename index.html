@@ -67,6 +67,31 @@
             white-space: pre-line;
         }
 
+        /* İletişim (Contact) Bölümü Stilleri - MEDIA QUERY DIŞINA ALINDI */
+        .hero-contact {
+            margin-top: 3rem; 
+            font-size: 1rem;
+        }
+
+        .hero-contact .hero-cta {
+            margin-bottom: 1.5rem; 
+            color: var(--text-primary);
+        }
+
+        .hero-contact p {
+            margin: 0.3rem 0; 
+        }
+
+        .hero-contact a {
+            color: #e5c07b; 
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        .hero-contact a:hover {
+            color: var(--text-primary); 
+        }
+
         /* Proje Kartları */
         .projects-section {
             max-width: 1200px;
@@ -109,15 +134,16 @@
             padding: 0.2rem 0.5rem;
             text-transform: lowercase;
         }
+        
         /* Görselin kırpılmadan sığması için güncellenen bölüm */
         .card-image {
             width: 100%;
             height: 250px;
-            object-fit: contain; /* cover yerine contain kullanıldı */
-            object-position: center; /* Resmi tam ortaya hizalar */
+            object-fit: contain; 
+            object-position: center; 
             border: 1px solid var(--card-border);
             margin-bottom: 1.5rem;
-            background-color: var(--bg-color); /* Boşlukların siteyle aynı renk olması için */
+            background-color: var(--bg-color); 
         }
 
         /* Kart başlıklarını link formatına uyarlama */
@@ -145,6 +171,7 @@
             color: var(--text-secondary);
         }
 
+        /* SADECE MOBİL İÇİN OLAN DÜZENLEMELER */
         @media (max-width: 768px) {
             nav {
                 justify-content: center;
@@ -153,34 +180,6 @@
             .hero {
                 padding: 3rem 1rem 4rem 1rem;
             }
-            /* İletişim (Contact) Bölümü Stilleri */
-            .hero-contact {
-                margin-top: 3rem; /* Üstteki metinle arasına boşluk bırakır */
-                font-size: 1rem;
-            }
-
-            /* "Let's talk" metni için ufak bir alt boşluk */
-            .hero-contact .hero-cta {
-                margin-bottom: 1.5rem; 
-                color: var(--text-primary);
-            }
-
-            /* Github ve Email satırlarının arasını daraltır */
-            .hero-contact p {
-                margin: 0.3rem 0; 
-            }
-
-            /* Hiperlinklerin (sarı) rengi ve efekti */
-            .hero-contact a {
-                color: #e5c07b; /* Resimdeki sarı/bej renk */
-                text-decoration: none;
-                transition: color 0.2s ease-in-out;
-            }
-
-            .hero-contact a:hover {
-                color: var(--text-primary); /* Üzerine gelince beyaz/parlak olur */
-            }
-            
         }
     </style>
 </head>
@@ -196,8 +195,13 @@
         <h1>[ ML Engineer / Low-Level Software Architect ]</h1>
         <p>I'm an AI & ML engineering student on the ML track with a parallel career as a low-level systems architect. 
         I combine low-level software with deep engineering to build AI systems.</p>
-        <p>github: <a href="https://github.com/yunhanref" target="_blank">@yunhanref</a></p>
-        <p>email: <a href="mailto:senin.emailin@gmail.com">senin [at] email (dot) com</a></p>
+        
+        <!-- İLETİŞİM BÖLÜMÜ - DIV EKLENDİ VE METİN DÜZENLENDİ -->
+        <div class="hero-contact">
+            <p class="hero-cta">Interested in low-level AI architecture? Let's talk.</p>
+            <p>github: <a href="https://github.com/yunhanref" target="_blank">@yunhanref</a></p>
+            <p>email: <a href="mailto:senin.emailin@gmail.com">senin [at] email (dot) com</a></p>
+        </div>
         
     </section>
 
@@ -213,7 +217,6 @@
                     <span class="card-tag">open source</span>
                 </div>
                 
-                <!-- DRAG & DROP: Görselin ismini "confusion_matrix.png" yap -->
                 <img src="images/confusion_matrix_cancer_screening_ml.png" alt="Confusion Matrix for Logistic Regression" class="card-image">
                 
                 <div class="card-desc">
@@ -231,7 +234,6 @@
                     <span class="card-tag">open source</span>
                 </div>
                 
-                <!-- DRAG & DROP: Görselin ismini "uml_diagram.png" yap -->
                 <img src="images/gradient_UML_design_OOPBrain.png" alt="UML Architecture Diagram" class="card-image">
                 
                 <div class="card-desc">
