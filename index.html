@@ -109,16 +109,26 @@
             padding: 0.2rem 0.5rem;
             text-transform: lowercase;
         }
-
-        /* Yüklenen Görsellerin Kutuya Tam Oturması İçin Stil */
+        /* Görselin kırpılmadan sığması için güncellenen bölüm */
         .card-image {
             width: 100%;
             height: 250px;
-            object-fit: cover;
-            object-position: top;
+            object-fit: contain; /* cover yerine contain kullanıldı */
+            object-position: center; /* Resmi tam ortaya hizalar */
             border: 1px solid var(--card-border);
             margin-bottom: 1.5rem;
-            background-color: #111c21;
+            background-color: var(--bg-color); /* Boşlukların siteyle aynı renk olması için */
+        }
+
+        /* Kart başlıklarını link formatına uyarlama */
+        .card-title a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        .card-title a:hover {
+            color: var(--accent-color);
         }
 
         .card-desc h3 {
@@ -182,7 +192,9 @@
             <!-- KART 2: OOP-BRAIN -->
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">OOP-Brain</h2>
+                    <h2 class="card-title">
+                        <a href="https://github.com/yunhanref/cancer-screening-ml-project" target="_blank">Cancer Screening ML</a>
+                    </h2>
                     <span class="card-tag">open source</span>
                 </div>
                 
@@ -190,7 +202,9 @@
                 <img src="images/gradient_UML_design_OOPBrain.png" alt="UML Architecture Diagram" class="card-image">
                 
                 <div class="card-desc">
-                    <h3>C++ Neural Network Library</h3>
+                    <h2 class="card-title">
+                        <a href="https://github.com/yunhanref/OOP-Brain" target="_blank">OOP-Brain</a>
+                    </h2>
                     <p>A custom open-source neural network library written in C++ from scratch. Features matrix math operations, layer architectures, and forward-pass integration routines.</p>
                 </div>
             </div>
