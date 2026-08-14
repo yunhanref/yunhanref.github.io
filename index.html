@@ -153,6 +153,34 @@
             .hero {
                 padding: 3rem 1rem 4rem 1rem;
             }
+            /* İletişim (Contact) Bölümü Stilleri */
+        .hero-contact {
+            margin-top: 3rem; /* Üstteki metinle arasına boşluk bırakır */
+            font-size: 1rem;
+        }
+
+        /* "Let's talk" metni için ufak bir alt boşluk */
+        .hero-contact .hero-cta {
+            margin-bottom: 1.5rem; 
+            color: var(--text-primary);
+        }
+
+        /* Github ve Email satırlarının arasını daraltır */
+        .hero-contact p {
+            margin: 0.3rem 0; 
+        }
+
+        /* Hiperlinklerin (sarı) rengi ve efekti */
+        .hero-contact a {
+            color: #e5c07b; /* Resimdeki sarı/bej renk */
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        .hero-contact a:hover {
+            color: var(--text-primary); /* Üzerine gelince beyaz/parlak olur */
+        }
+            
         }
     </style>
 </head>
