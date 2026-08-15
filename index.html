@@ -184,11 +184,122 @@
             .hero {
                 padding: 3rem 1rem 4rem 1rem;
             }
+        
         }
+        
+        #networkCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Tüm içeriklerin arkasında kalmasını sağlar */
+            pointer-events: none; /* Mouse tıklamalarının canvas'tan geçip linklere ulaşmasını sağlar */
+        }
+        
     </style>
 </head>
-<body>
+<!-- ANİMASYON SCRİPTİ (Body kapanmadan hemen önce) -->
+    <script>
+        const canvas = document.getElementById('networkCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let particles = [];
+        
+        // Animasyon Ayarları
+        const properties = {
+            particleCount: 70, // Nöron sayısı (performans için çok artırmayın)
+            particleRadius: 1.5, // Nöron büyüklüğü
+            maxVelocity: 0.5, // Hareket hızı
+            lineLength: 120, // Çizgilerin oluşacağı maksimum mesafe
+            particleColor: 'rgba(57, 211, 159, 0.8)', // Nöron rengi (Neon Yeşil)
+            lineColor: '10, 50, 40' // Çizgi renginin RGB formatı (opaklık dinamik hesaplanacak)
+        };
 
+        // Ekran boyutunu ayarla
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        // Nöron (Parçacık) Sınıfı
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.velocityX = (Math.random() * properties.maxVelocity * 2) - properties.maxVelocity;
+                this.velocityY = (Math.random() * properties.maxVelocity * 2) - properties.maxVelocity;
+            }
+
+            position() {
+                // Ekran dışına çıkan nöronları diğer taraftan sok
+                this.x + this.velocityX > width && this.velocityX > 0 || this.x + this.velocityX < 0 && this.velocityX < 0 ? this.velocityX *= -1 : this.velocityX;
+                this.y + this.velocityY > height && this.velocityY > 0 || this.y + this.velocityY < 0 && this.velocityY < 0 ? this.velocityY *= -1 : this.velocityY;
+                this.x += this.velocityX;
+                this.y += this.velocityY;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, properties.particleRadius, 0, Math.PI * 2);
+                ctx.fillStyle = properties.particleColor;
+                ctx.fill();
+            }
+        }
+
+        // Nöronları oluştur
+        for (let i = 0; i < properties.particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        // Çizgileri (Sinapsları) çiz
+        function drawLines() {
+            let x1, y1, x2, y2, length, opacity;
+            for (let i = 0; i < properties.particleCount; i++) {
+                for (let j = i + 1; j < properties.particleCount; j++) {
+                    x1 = particles[i].x;
+                    y1 = particles[i].y;
+                    x2 = particles[j].x;
+                    y2 = particles[j].y;
+                    length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+
+                    if (length < properties.lineLength) {
+                        // Birbirlerine yaklaştıkça çizgiler belirginleşir
+                        opacity = 1 - length / properties.lineLength;
+                        ctx.lineWidth = 0.5;
+                        ctx.strokeStyle = `rgba(${properties.lineColor}, ${opacity})`;
+                        ctx.beginPath();
+                        ctx.moveTo(x1, y1);
+                        ctx.lineTo(x2, y2);
+                        ctx.closePath();
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        // Animasyon Döngüsü
+        function loop() {
+            // Önceki kareyi temizle (gradient arka planın görünmesi için clearRect kullanılır)
+            ctx.clearRect(0, 0, width, height);
+            
+            for (let i = 0; i < properties.particleCount; i++) {
+                particles[i].position();
+                particles[i].draw();
+            }
+            drawLines();
+            requestAnimationFrame(loop);
+        }
+
+        loop();
+    </script>
+<body>
+    <canvas id="networkCanvas"></canvas>
+    
     <nav>
         <a href="#projects">Projects</a>
         <a href="https://github.com/yunhanref">GitHub</a>
