@@ -200,6 +200,73 @@
     </style>
 </head>
 <!-- ANİMASYON SCRİPTİ (Body kapanmadan hemen önce) -->
+
+<body>
+    <canvas id="networkCanvas"></canvas>
+    
+    <nav>
+        <a href="#projects">Projects</a>
+        <a href="https://github.com/yunhanref">GitHub</a>
+        <a href="mailto:yunhanref@proton.me" target="_blank">Contact</a>
+    </nav>
+
+    <section class="hero">
+        <img src="images/mainpage.png" height = "200" width = "200" alt="Profile" class="hero-avatar">
+        <h1>[ ML Engineer / Low-Level Software Architect ]</h1>
+        <p>I'm an AI & ML engineering student on the ML track with a parallel career as a low-level systems architect. 
+        I combine low-level software with deep engineering to build AI systems.</p>
+        
+        <!-- İLETİŞİM BÖLÜMÜ - DIV EKLENDİ VE METİN DÜZENLENDİ -->
+        <div class="hero-contact">
+            <div class="contact-grid">
+                <div class="contact-label">github:</div>
+                <div class="contact-value"><a href="https://github.com/yunhanref" target="_blank">@yunhanref</a></div>
+                <div class="contact-label">email:</div>
+                <div class="contact-value"><a href="mailto:yunhanref@proton.me">yunhanref [at] proton (dot) me</a></div>
+            </div>
+        </div>
+        
+    </section>
+
+    <section class="projects-section" id="projects">
+        <div class="projects-grid">
+            
+            <!-- KART 1: CANCER SCREENING ML -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <a href="https://github.com/yunhanref/cancer-screening-ml-project" target="_blank">Cancer Screening ML</a>
+                    </h2>
+                    <span class="card-tag">open source</span>
+                </div>
+                
+                <img src="images/confusion_matrix_cancer_screening_ml.png" alt="Confusion Matrix for Logistic Regression" class="card-image">
+                
+                <div class="card-desc">
+                    <h3>Logistic Regression Classification</h3>
+                    <p>Machine learning classification model built using the 2024 CDC BRFSS dataset. Includes data preprocessing and exploratory data analysis.</p>
+                </div>
+            </div>
+
+            <!-- KART 2: OOP-BRAIN -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <a href="https://github.com/yunhanref/OOP-Brain" target="_blank">OOP-Brain</a>
+                    </h2>
+                    <span class="card-tag">open source</span>
+                </div>
+                
+                <img src="images/gradient_UML_design_OOPBrain.png" alt="UML Architecture Diagram" class="card-image">
+                
+                <div class="card-desc">
+                    <h3>C++ Neural Network Library</h3>
+                    <p>A custom open-source neural network library written in C++ from scratch. Features matrix math operations, layer architectures, and forward-pass integration routines.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
     <script>
         const canvas = document.getElementById('networkCanvas');
         const ctx = canvas.getContext('2d');
@@ -297,72 +364,5 @@
 
         loop();
     </script>
-<body>
-    <canvas id="networkCanvas"></canvas>
-    
-    <nav>
-        <a href="#projects">Projects</a>
-        <a href="https://github.com/yunhanref">GitHub</a>
-        <a href="mailto:yunhanref@proton.me" target="_blank">Contact</a>
-    </nav>
-
-    <section class="hero">
-        <img src="images/mainpage.png" height = "200" width = "200" alt="Profile" class="hero-avatar">
-        <h1>[ ML Engineer / Low-Level Software Architect ]</h1>
-        <p>I'm an AI & ML engineering student on the ML track with a parallel career as a low-level systems architect. 
-        I combine low-level software with deep engineering to build AI systems.</p>
-        
-        <!-- İLETİŞİM BÖLÜMÜ - DIV EKLENDİ VE METİN DÜZENLENDİ -->
-        <div class="hero-contact">
-            <div class="contact-grid">
-                <div class="contact-label">github:</div>
-                <div class="contact-value"><a href="https://github.com/yunhanref" target="_blank">@yunhanref</a></div>
-                <div class="contact-label">email:</div>
-                <div class="contact-value"><a href="mailto:yunhanref@proton.me">yunhanref [at] proton (dot) me</a></div>
-            </div>
-        </div>
-        
-    </section>
-
-    <section class="projects-section" id="projects">
-        <div class="projects-grid">
-            
-            <!-- KART 1: CANCER SCREENING ML -->
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title">
-                        <a href="https://github.com/yunhanref/cancer-screening-ml-project" target="_blank">Cancer Screening ML</a>
-                    </h2>
-                    <span class="card-tag">open source</span>
-                </div>
-                
-                <img src="images/confusion_matrix_cancer_screening_ml.png" alt="Confusion Matrix for Logistic Regression" class="card-image">
-                
-                <div class="card-desc">
-                    <h3>Logistic Regression Classification</h3>
-                    <p>Machine learning classification model built using the 2024 CDC BRFSS dataset. Includes data preprocessing and exploratory data analysis.</p>
-                </div>
-            </div>
-
-            <!-- KART 2: OOP-BRAIN -->
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title">
-                        <a href="https://github.com/yunhanref/OOP-Brain" target="_blank">OOP-Brain</a>
-                    </h2>
-                    <span class="card-tag">open source</span>
-                </div>
-                
-                <img src="images/gradient_UML_design_OOPBrain.png" alt="UML Architecture Diagram" class="card-image">
-                
-                <div class="card-desc">
-                    <h3>C++ Neural Network Library</h3>
-                    <p>A custom open-source neural network library written in C++ from scratch. Features matrix math operations, layer architectures, and forward-pass integration routines.</p>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
 </body>
 </html>
