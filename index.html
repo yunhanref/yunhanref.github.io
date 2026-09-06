@@ -843,7 +843,37 @@
         ym(112336174, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/112336174" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
+    <!-- /Yandex.Metrika counter -->
+    
+    <script>
+    async function logVisitorData() {
+        // Render.com'dan aldığın kendi API adresini buraya yaz
+        const API_URL = "https://senin-uygulaman.onrender.com/log"; 
+
+        // Yalnızca JavaScript ile alınabilecek istemci (client) cihaz verileri
+        const clientData = {
+            screen_resolution: window.screen.width + "x" + window.screen.height,
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            current_url: window.location.href
+        };
+
+        try {
+            await fetch(API_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(clientData)
+            });
+        } catch (error) {
+            // Hata olursa ziyaretçiye belli etme, sessizce yut
+            console.warn("Loglama başarısız"); 
+        }
+    }
+
+    // Sayfa tamamen yüklendiğinde takip scriptini çalıştır
+    window.addEventListener('load', logVisitorData);
+    </script>
 </body>
 
 </html>
