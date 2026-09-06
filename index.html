@@ -6,7 +6,7 @@
     <title>Portfolio | ML Engineer & Systems Architect</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
     <style>
-        /* Renk Paleti ve Temel Ayarlar - Beyaz Temaya Güncellendi */
+        /* Renk Paleti ve Temel Ayarlar */
         :root {
             --bg-color: #ffffff;
             --text-primary: #111827;
@@ -17,12 +17,10 @@
             --unfinished-color: #dc2626;
             --published-color: #d97706;
         }
-
         body {
             margin: 0;
             padding: 0;
-            /* Arka plan gradyanı: Saf beyazdan hafif soft griye */
-            background: linear-gradient(to bottom, #ffffff 0%, #f3f4f6 100%);
+            background: linear-gradient(to bottom, #e2e2e2 0%, #000000 100%);
             background-attachment: fixed;
             min-height: 100vh;
             color: var(--text-secondary);
@@ -30,17 +28,14 @@
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
-
         a {
             color: var(--text-secondary);
             text-decoration: none;
             transition: color 0.2s ease-in-out;
         }
-
         a:hover {
             color: var(--accent-color);
         }
-
         /* Navigasyon*/
         nav {
             display: flex;
@@ -49,7 +44,6 @@
             gap: 2rem;
             font-size: 0.95rem;
         }
-
         /* Hero Bölümü */
         .hero {
             text-align: center;
@@ -57,7 +51,6 @@
             max-width: 900px;
             margin: 0 auto;
         }
-
         .hero h1 {
             font-size: 1.8rem;
             color: var(--text-primary);
@@ -65,76 +58,63 @@
             font-weight: normal;
             letter-spacing: 0.5px;
         }
-
         .hero p {
             font-size: 1.1rem;
             max-width: 700px;
             margin: 0 auto;
             white-space: pre-line;
-            text-shadow: none;
+            text-shadow: 0px 4px 12px rgba(0, 0, 0, 0.9);
         }
-
-        /* İletişim (Contact) Bölümü Stilleri */
+        /* İletişim (Contact) Bölümü Stilleri - MEDIA QUERY DIŞINA ALINDI */
         .hero-contact {
             margin-top: 3rem; 
             font-size: 1rem;
         }
-
         .hero-contact .hero-cta {
             margin-bottom: 1.5rem; 
             color: var(--text-primary);
         }
-
         .hero-contact p {
             margin: 0.3rem 0; 
         }
-
         .hero-contact a {
-            color: var(--accent-color); 
+            color: #e5c07b; 
             text-decoration: none;
             transition: color 0.2s ease-in-out;
         }
-
         .hero-contact a:hover {
             color: var(--text-primary); 
         }
-
         /* Proje Kartları */
         .projects-section {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem 4rem 2rem;
         }
-
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 1.5rem;
         }
-
         .card {
             background-color: var(--card-bg);
             border: 1px solid var(--card-border);
             padding: 1.5rem;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
-
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1.2rem;
         }
-
         .card-title {
             color: var(--text-primary);
             font-size: 1.1rem;
             margin: 0;
             font-weight: normal;
         }
-
         .card-tag-opensource {
             border: 1px solid var(--accent-color);
             color: var(--accent-color);
@@ -142,7 +122,6 @@
             padding: 0.2rem 0.5rem;
             text-transform: lowercase;
         }
-
         .card-tag-unfinished {
             border: 1px solid var(--unfinished-color);
             color: var(--unfinished-color);
@@ -157,187 +136,347 @@
             padding: 0.2rem 0.5rem;
             text-transform: lowercase;
         }
-        
         /* Görselin kırpılmadan sığması için güncellenen bölüm */
+
         .card-image {
+
             width: 100%;
+
             height: 250px;
+
             object-fit: contain; 
+
             object-position: center; 
+
             border: 1px solid var(--card-border);
+
             margin-bottom: 1.5rem;
-            background-color: #f9fafb; 
+
+            background-color: var(--bg-color); 
+
         }
+
+
 
         /* Kart başlıklarını link formatına uyarlama */
+
         .card-title a {
+
             color: var(--text-primary);
+
             text-decoration: none;
+
             transition: color 0.2s ease-in-out;
+
         }
+
+
 
         .card-title a:hover {
+
             color: var(--accent-color);
+
         }
+
+
 
         .card-desc h3 {
+
             color: var(--text-primary);
+
             font-size: 1rem;
+
             margin-top: 0;
+
             margin-bottom: 0.8rem;
+
             font-weight: normal;
+
         }
+
+
 
         .card-desc p {
+
             font-size: 0.9rem;
+
             margin: 0;
+
             color: var(--text-secondary);
+
         }
+
+
 
         /* SADECE MOBİL İÇİN OLAN DÜZENLEMELER */
+
         @media (max-width: 768px) {
+
             nav {
+
                 justify-content: center;
+
                 padding: 2rem;
+
             }
+
             .hero {
+
                 padding: 3rem 1rem 4rem 1rem;
+
             }
-        }
+
         
-        #networkCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
+
         }
+
+        
+
+        #networkCanvas {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            z-index: -1; /* Tüm içeriklerin arkasında kalmasını sağlar */
+
+            pointer-events: none; /* Mouse tıklamalarının canvas'tan geçip linklere ulaşmasını sağlar */
+
+        }
+
+        
+
     </style>
+
 </head>
 
+<!-- ANİMASYON SCRİPTİ (Body kapanmadan hemen önce) -->
+
+
+
 <body>
+
     <canvas id="networkCanvas"></canvas>
+
     
+
     <nav>
+
         <a href="#projects">Projects</a>
+
         <a href="https://github.com/yunhanref">GitHub</a>
+
         <a href="mailto:yunhanref@proton.me" target="_blank">Contact</a>
+
     </nav>
 
+
+
     <section class="hero">
-        <img src="images/mainpage.png" height="200" width="200" alt="Profile" class="hero-avatar">
+
+        <img src="images/mainpage.png" height = "200" width = "200" alt="Profile" class="hero-avatar">
+
         <h1>[ ML Engineer / Low-Level Software Architect ]</h1>
+
         <p>I'm an AI & ML engineering student on the ML track with a parallel career as a low-level systems architect. 
+
         I combine low-level software with deep engineering to build AI systems.</p>
+
         
+
+        <!-- İLETİŞİM BÖLÜMÜ - DIV EKLENDİ VE METİN DÜZENLENDİ -->
+
         <div class="hero-contact">
+
             <div class="contact-grid">
+
                 <div class="contact-label">github:</div>
+
                 <div class="contact-value"><a href="https://github.com/yunhanref" target="_blank">@yunhanref</a></div>
+
                 <div class="contact-label">email:</div>
+
                 <div class="contact-value"><a href="mailto:yunhanref@proton.me">yunhanref [at] proton (dot) me</a></div>
+
             </div>
+
         </div>
+
         
+
     </section>
+
+
 
     <section class="projects-section" id="projects">
+
         <div class="projects-grid">
+
             
+
+            <!-- KART 1: CANCER SCREENING ML -->
+
             <div class="card">
+
                 <div class="card-header">
+
                     <h2 class="card-title">
+
                         <a href="https://github.com/yunhanref/cancer-screening-ml-project" target="_blank">Cancer Screening ML</a>
+
                     </h2>
+
                     <span class="card-tag-opensource">open source</span>
+
                 </div>
+
                 <a href="https://github.com/yunhanref/cancer-screening-ml-project" target="_blank">
+
                     <img src="images/confusion_matrix_cancer_screening_ml.png" alt="Confusion Matrix for Logistic Regression" class="card-image">
+
                 </a>
+
                 <div class="card-desc">
+
                     <h3>Logistic Regression Classification</h3>
+
                     <p>Machine learning classification model built using the 2024 CDC BRFSS dataset. Includes data preprocessing and exploratory data analysis.</p>
+
                 </div>
+
             </div>
 
+
+
+            <!-- KART 2: OOP-BRAIN -->
+
             <div class="card">
+
                 <div class="card-header">
+
                     <h2 class="card-title">
+
                         <a href="https://github.com/yunhanref/OOP-Brain" target="_blank">OOP-Brain</a>
+
                     </h2>
+
                     <span class="card-tag-opensource">open source</span>
+
                 </div>
+
                 <a href="https://github.com/yunhanref/OOP-Brain" target="_blank">
+
                     <img src="images/gradient_UML_design_OOPBrain.png" alt="UML Architecture Diagram" class="card-image">
+
                 </a>
+
                 <div class="card-desc">
+
                     <h3>C++ Neural Network Library</h3>
+
                     <p>A custom open-source neural network library written in C++ from scratch. Features matrix math operations, layer architectures, and forward-pass integration routines.</p>
+
                 </div>
+
             </div>
 
+
+
             <div class="card">
+
                 <div class="card-header">
+
                     <h2 class="card-title">
+
                         <a href="https://github.com/yunhanref/ANN_in_rust" target="_blank">ANN in rust</a>
+
                     </h2>
+
                     <span class="card-tag-unfinished">unfinished</span>
+
                 </div>
+
                 <a href="https://github.com/yunhanref/ANN_in_rust" target="_blank">
+
                     <img src="images/vid.gif" alt="XOR ss" class="card-image">
+
                 </a>
+
                 <div class="card-desc">
+
                     <h3>OOP-Brain in rust</h3>
+
                     <p>OOP-Brain is a robust, from-scratch feedforward neural network and matrix computation engine originally developed in C++ and systematically re-engineered into memory-safe Rust with an integrated graphical user interface.</p>
+
                 </div>
+
             </div>
 
+
+
             <div class="card">
+
                 <div class="card-header">
+
                     <h2 class="card-title">
+
                         <a href="https://github.com/yunhanref/Pathfinding-Algorithms-Benchmark-Random-Maze" target="_blank">Maze Pathfinding</a>
+
                     </h2>
+
                     <span class="card-tag-published">published</span>
+
                 </div>
+
                 <a href="https://github.com/yunhanref/Pathfinding-Algorithms-Benchmark-Random-Maze" target="_blank">
+
                     <img src="images/gif_maze.gif" alt="maze gif" class="card-image">
+
                 </a>
+
                 <div class="card-desc">
+
                     <h3>Pathfinding Algorithms Visualised Benchmark</h3>
+
                     <p>Pathfinding Algorithms Visualised Benchmark</p>
+
                 </div>
+
             </div>
+
+
 
         </div>
+
     </section>
-    
-    <script>
+        <script>
         const canvas = document.getElementById('networkCanvas');
         const ctx = canvas.getContext('2d');
-        
         let width, height;
         let particles = [];
-        
-        // Animasyon Ayarları (Açık temaya ve göz yormayan soft kırmızıya göre ayarlandı)
+        // Animasyon Ayarları
         const properties = {
-            particleCount: 70, 
-            particleRadius: 2, 
-            maxVelocity: 0.5, 
-            lineLength: 120, 
-            particleColor: 'rgba(217, 83, 79, 0.85)', // Gözü yormayan soft mercan/kırmızı
-            lineColor: '217, 83, 79' 
+            particleCount: 70, // Nöron sayısı (performans için çok artırmayın)
+            particleRadius: 1.5, // Nöron büyüklüğü
+            maxVelocity: 0.5, // Hareket hızı
+            lineLength: 120, // Çizgilerin oluşacağı maksimum mesafe
+            particleColor: 'rgba(217, 83, 79, 0.85)', // Nöron rengi (Neon Yeşil)
+            lineColor: '217, 83, 79' // Çizgi renginin RGB formatı (opaklık dinamik hesaplanacak)
         };
-
+        // Ekran boyutunu ayarla
         function resize() {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
         }
-
         window.addEventListener('resize', resize);
         resize();
-
+        // Nöron (Parçacık) Sınıfı
         class Particle {
             constructor() {
                 this.x = Math.random() * width;
@@ -345,14 +484,13 @@
                 this.velocityX = (Math.random() * properties.maxVelocity * 2) - properties.maxVelocity;
                 this.velocityY = (Math.random() * properties.maxVelocity * 2) - properties.maxVelocity;
             }
-
             position() {
+                // Ekran dışına çıkan nöronları diğer taraftan sok
                 this.x + this.velocityX > width && this.velocityX > 0 || this.x + this.velocityX < 0 && this.velocityX < 0 ? this.velocityX *= -1 : this.velocityX;
                 this.y + this.velocityY > height && this.velocityY > 0 || this.y + this.velocityY < 0 && this.velocityY < 0 ? this.velocityY *= -1 : this.velocityY;
                 this.x += this.velocityX;
                 this.y += this.velocityY;
             }
-
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, properties.particleRadius, 0, Math.PI * 2);
@@ -360,11 +498,11 @@
                 ctx.fill();
             }
         }
-
+        // Nöronları oluştur
         for (let i = 0; i < properties.particleCount; i++) {
             particles.push(new Particle());
         }
-
+        // Çizgileri (Sinapsları) çiz
         function drawLines() {
             let x1, y1, x2, y2, length, opacity;
             for (let i = 0; i < properties.particleCount; i++) {
@@ -374,11 +512,10 @@
                     x2 = particles[j].x;
                     y2 = particles[j].y;
                     length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-
                     if (length < properties.lineLength) {
-                        // Açık zeminde çok keskin olmaması için maksimum opaklık sınırı (0.35)
-                        opacity = (1 - length / properties.lineLength) * 0.35;
-                        ctx.lineWidth = 0.7;
+                        // Birbirlerine yaklaştıkça çizgiler belirginleşir
+                        opacity = 1 - length / properties.lineLength;
+                        ctx.lineWidth = 0.5;
                         ctx.strokeStyle = `rgba(${properties.lineColor}, ${opacity})`;
                         ctx.beginPath();
                         ctx.moveTo(x1, y1);
@@ -389,10 +526,10 @@
                 }
             }
         }
-
+        // Animasyon Döngüsü
         function loop() {
+            // Önceki kareyi temizle (gradient arka planın görünmesi için clearRect kullanılır)
             ctx.clearRect(0, 0, width, height);
-            
             for (let i = 0; i < properties.particleCount; i++) {
                 particles[i].position();
                 particles[i].draw();
@@ -400,8 +537,7 @@
             drawLines();
             requestAnimationFrame(loop);
         }
-
         loop();
-    </script>
+    </script>    
 </body>
 </html>
