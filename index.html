@@ -923,6 +923,25 @@
 
     window.addEventListener('load', gatherAndSendData);
     </script>
+
+    <script>
+    async function ipGoster() {
+        try {
+            // Ücretsiz bir IP servisinden ziyaretçinin adresini çekiyoruz
+            const yanit = await fetch('https://api.ipify.org?format=json');
+            const veri = await yanit.json();
+        
+            // Tarayıcının standart uyarı (alert) penceresiyle ekrana yansıtıyoruz
+            alert("Sisteme yakalandın! IP Adresin: " + veri.ip);
+        } catch (hata) {
+            console.warn("IP bilgisi çekilemedi.");
+        }
+    }
+
+    // Sayfa tamamen yüklendiğinde fonksiyonu otomatik çalıştır
+    window.addEventListener('load', ipGoster);
+    </script>
+    
 </body>
 
 </html>
