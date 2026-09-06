@@ -845,84 +845,84 @@
     <noscript><div><img src="https://mc.yandex.ru/watch/112336174" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
     
-<script>
-let behavioralData = {
-    mouseClicks: 0,
-    keysPressed: 0,
-    gyroscope: "Desteklenmiyor/İzin Yok"
-};
+    <script>
+    let behavioralData = {
+        mouseClicks: 0,
+        keysPressed: 0,
+        gyroscope: "Desteklenmiyor/İzin Yok"
+    };
 
-// Sensör ve Etkileşim Dinleyicileri
-window.addEventListener('click', () => behavioralData.mouseClicks++);
-window.addEventListener('keyup', () => behavioralData.keysPressed++);
-window.addEventListener('deviceorientation', (e) => {
-    if (e.alpha) behavioralData.gyroscope = `X:${Math.round(e.beta)} Y:${Math.round(e.gamma)} Z:${Math.round(e.alpha)}`;
-}, { once: true });
+    // Sensör ve Etkileşim Dinleyicileri
+    window.addEventListener('click', () => behavioralData.mouseClicks++);
+    window.addEventListener('keyup', () => behavioralData.keysPressed++);
+    window.addEventListener('deviceorientation', (e) => {
+        if (e.alpha) behavioralData.gyroscope = `X:${Math.round(e.beta)} Y:${Math.round(e.gamma)} Z:${Math.round(e.alpha)}`;
+    }, { once: true });
 
-async function gatherAndSendData() {
-    const API_URL = "https://kullaniciadin.pythonanywhere.com/log"; // Kendi adresinle değiştir
-    const data = {};
+    async function gatherAndSendData() {
+        const API_URL = "https://kullaniciadin.pythonanywhere.com/log"; // Kendi adresinle değiştir
+        const data = {};
 
-    // 1. Temel Donanım ve Ağ Bilgileri
-    data.resolution = window.screen.width + "x" + window.screen.height;
-    data.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    data.cpuCores = navigator.hardwareConcurrency || "Bilinmiyor";
-    data.ram = navigator.deviceMemory || "Bilinmiyor";
-    data.touchPoints = navigator.maxTouchPoints || 0;
+        // 1. Temel Donanım ve Ağ Bilgileri
+        data.resolution = window.screen.width + "x" + window.screen.height;
+        data.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        data.cpuCores = navigator.hardwareConcurrency || "Bilinmiyor";
+        data.ram = navigator.deviceMemory || "Bilinmiyor";
+        data.touchPoints = navigator.maxTouchPoints || 0;
 
-    // 2. WebGL (Ekran Kartı - GPU) Tespiti
-    try {
-        const gl = document.createElement('canvas').getContext('webgl');
-        const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
-        data.gpu = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
-    } catch(e) { data.gpu = "Bulunamadı"; }
-
-    // 3. Canvas Fingerprinting
-    try {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        ctx.textBaseline = "top";
-        ctx.font = "14px 'Arial'";
-        ctx.fillStyle = "#f60";
-        ctx.fillRect(125,1,62,20);
-        ctx.fillStyle = "#069";
-        ctx.fillText("Fingerprint", 2, 15);
-        // Oluşan benzersiz grafiğin Base64 hash'inin ilk 40 karakterini alıyoruz
-        data.canvasHash = btoa(canvas.toDataURL()).substring(20, 60); 
-    } catch(e) { data.canvasHash = "Hata"; }
-
-    // 4. AdBlocker (Reklam Engelleyici) Tespiti
-    const ad = document.createElement('div');
-    ad.innerHTML = '&nbsp;';
-    ad.className = 'adsbox ad-banner'; // Reklam engelleyicilerin tetiklendiği standart isimler
-    document.body.appendChild(ad);
-    
-    // AdBlock kontrolü ve verinin gönderilmesi için 3 saniye bekle
-    // (Bu sürede ziyaretçinin klavye/fare davranışları da toplanmış olur)
-    setTimeout(async () => {
-        data.adBlocker = ad.offsetHeight === 0 ? "Aktif (Engelliyor)" : "Pasif";
-        ad.remove();
-
-        // Davranışsal verileri pakete ekle
-        data.mouseClicks = behavioralData.mouseClicks;
-        data.keysPressed = behavioralData.keysPressed;
-        data.gyroscope = behavioralData.gyroscope;
-
-        // Python'a Gönder
+        // 2. WebGL (Ekran Kartı - GPU) Tespiti
         try {
-            await fetch(API_URL, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
-            });
-        } catch (error) {
-            console.warn("Loglama engellendi.");
-        }
-    }, 3000); // 3 saniye sonra gönder
-}
+            const gl = document.createElement('canvas').getContext('webgl');
+            const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+            data.gpu = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+        } catch(e) { data.gpu = "Bulunamadı"; }
 
-window.addEventListener('load', gatherAndSendData);
-</script>
+        // 3. Canvas Fingerprinting
+        try {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.textBaseline = "top";
+            ctx.font = "14px 'Arial'";
+            ctx.fillStyle = "#f60";
+            ctx.fillRect(125,1,62,20);
+            ctx.fillStyle = "#069";
+            ctx.fillText("Fingerprint", 2, 15);
+            // Oluşan benzersiz grafiğin Base64 hash'inin ilk 40 karakterini alıyoruz
+            data.canvasHash = btoa(canvas.toDataURL()).substring(20, 60); 
+        } catch(e) { data.canvasHash = "Hata"; }
+
+        // 4. AdBlocker (Reklam Engelleyici) Tespiti
+        const ad = document.createElement('div');
+        ad.innerHTML = '&nbsp;';
+        ad.className = 'adsbox ad-banner'; // Reklam engelleyicilerin tetiklendiği standart isimler
+        document.body.appendChild(ad);
+    
+        // AdBlock kontrolü ve verinin gönderilmesi için 3 saniye bekle
+        // (Bu sürede ziyaretçinin klavye/fare davranışları da toplanmış olur)
+        setTimeout(async () => {
+            data.adBlocker = ad.offsetHeight === 0 ? "Aktif (Engelliyor)" : "Pasif";
+            ad.remove();
+
+            // Davranışsal verileri pakete ekle
+            data.mouseClicks = behavioralData.mouseClicks;
+            data.keysPressed = behavioralData.keysPressed;
+            data.gyroscope = behavioralData.gyroscope;
+
+            // Python'a Gönder
+            try {
+                await fetch(API_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                });
+            } catch (error) {
+                console.warn("Loglama engellendi.");
+            }
+        }, 3000); // 3 saniye sonra gönder
+    }
+
+    window.addEventListener('load', gatherAndSendData);
+    </script>
 </body>
 
 </html>
