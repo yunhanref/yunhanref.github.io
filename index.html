@@ -1,141 +1,319 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Portfolio | ML Engineer & Systems Architect</title>
+
     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+
     <style>
+
         /* Renk Paleti ve Temel Ayarlar */
+
         :root {
+
             --bg-color: #070d10;
+
             --text-primary: #e0e6ed;
+
             --text-secondary: #8b9eb0;
-            --accent-color: #dc2626; /* Soft/Sütlü Kırmızı Accent */
-            --card-bg: #8b9eb0;
+
+            --accent-color: #39d39f;
+
+            --card-bg: #0c1417;
+
             --card-border: #1a2a30;
+
             --unfinished-color: #d21010;
+
             --published-color: #f9ff1d;
+
         }
+
+
+
         body {
+
             margin: 0;
+
             padding: 0;
-            background: linear-gradient(to bottom, #1b1b1b 0%, #000000 100%);
+
+            background: linear-gradient(to bottom, #1b1b1b 0%, #ffffff 100%);
+
             background-attachment: fixed;
+
             min-height: 100vh;
+
             color: var(--text-secondary);
+
             font-family: 'Consolas', 'Courier New', Courier, monospace;
+
             line-height: 1.6;
+
             -webkit-font-smoothing: antialiased;
+
         }
+
+
+
         a {
+
             color: var(--text-secondary);
+
             text-decoration: none;
+
             transition: color 0.2s ease-in-out;
+
         }
+
+
+
         a:hover {
+
             color: var(--accent-color);
+
         }
+
+
+
         /* Navigasyon*/
+
         nav {
+
             display: flex;
+
             justify-content: flex-end;
+
             padding: 2rem 4rem;
+
             gap: 2rem;
+
             font-size: 0.95rem;
+
         }
+
+
+
         /* Hero Bölümü */
+
         .hero {
+
             text-align: center;
+
             padding: 5rem 2rem 7rem 2rem;
+
             max-width: 900px;
+
             margin: 0 auto;
+
         }
+
+
+
         .hero h1 {
+
             font-size: 1.8rem;
+
             color: var(--text-primary);
+
             margin-bottom: 2rem;
+
             font-weight: normal;
+
             letter-spacing: 0.5px;
+
         }
+
+
+
         .hero p {
+
             font-size: 1.1rem;
+
             max-width: 700px;
+
             margin: 0 auto;
+
             white-space: pre-line;
+
             text-shadow: 0px 4px 12px rgba(0, 0, 0, 0.9);
+
         }
+
+
+
         /* İletişim (Contact) Bölümü Stilleri - MEDIA QUERY DIŞINA ALINDI */
+
         .hero-contact {
+
             margin-top: 3rem; 
+
             font-size: 1rem;
+
         }
+
+
+
         .hero-contact .hero-cta {
+
             margin-bottom: 1.5rem; 
+
             color: var(--text-primary);
+
         }
+
+
+
         .hero-contact p {
+
             margin: 0.3rem 0; 
+
         }
+
+
+
         .hero-contact a {
+
             color: #e5c07b; 
+
             text-decoration: none;
+
             transition: color 0.2s ease-in-out;
+
         }
+
+
+
         .hero-contact a:hover {
+
             color: var(--text-primary); 
+
         }
+
+
+
         /* Proje Kartları */
+
         .projects-section {
+
             max-width: 1200px;
+
             margin: 0 auto;
+
             padding: 0 2rem 4rem 2rem;
+
         }
+
+
+
         .projects-grid {
+
             display: grid;
+
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+
             gap: 1.5rem;
+
         }
+
+
+
         .card {
+
             background-color: var(--card-bg);
+
             border: 1px solid var(--card-border);
+
             padding: 1.5rem;
+
             display: flex;
+
             flex-direction: column;
+
         }
+
+
+
         .card-header {
+
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
+
             margin-bottom: 1.2rem;
+
         }
+
+
+
         .card-title {
+
             color: var(--text-primary);
+
             font-size: 1.1rem;
+
             margin: 0;
+
             font-weight: normal;
+
         }
+
+
+
         .card-tag-opensource {
+
             border: 1px solid var(--accent-color);
+
             color: var(--accent-color);
+
             font-size: 0.75rem;
+
             padding: 0.2rem 0.5rem;
+
             text-transform: lowercase;
+
         }
+
+
+
         .card-tag-unfinished {
+
             border: 1px solid var(--unfinished-color);
+
             color: var(--unfinished-color);
+
             font-size: 0.75rem;
+
             padding: 0.2rem 0.5rem;
+
             text-transform: lowercase;
+
         }
+
         .card-tag-published {
+
             border: 1px solid var(--published-color);
+
             color: var(--published-color);
+
             font-size: 0.75rem;
+
             padding: 0.2rem 0.5rem;
+
             text-transform: lowercase;
+
         }
+
+        
+
         /* Görselin kırpılmadan sığması için güncellenen bölüm */
 
         .card-image {
@@ -455,89 +633,203 @@
         </div>
 
     </section>
+
+    
+
         <script>
+
         const canvas = document.getElementById('networkCanvas');
+
         const ctx = canvas.getContext('2d');
+
+        
+
         let width, height;
+
         let particles = [];
+
+        
+
         // Animasyon Ayarları
+
         const properties = {
+
             particleCount: 70, // Nöron sayısı (performans için çok artırmayın)
+
             particleRadius: 1.5, // Nöron büyüklüğü
+
             maxVelocity: 0.5, // Hareket hızı
+
             lineLength: 120, // Çizgilerin oluşacağı maksimum mesafe
-            particleColor: 'rgba(217, 83, 79, 0.85)', // Nöron rengi (Neon Yeşil)
-            lineColor: '217, 83, 79' // Çizgi renginin RGB formatı (opaklık dinamik hesaplanacak)
+
+            particleColor: 'rgba(57, 211, 159, 0.8)', // Nöron rengi (Neon Yeşil)
+
+            lineColor: '10, 50, 40' // Çizgi renginin RGB formatı (opaklık dinamik hesaplanacak)
+
         };
+
+
+
         // Ekran boyutunu ayarla
+
         function resize() {
+
             width = canvas.width = window.innerWidth;
+
             height = canvas.height = window.innerHeight;
+
         }
+
+
+
         window.addEventListener('resize', resize);
+
         resize();
+
+
+
         // Nöron (Parçacık) Sınıfı
+
         class Particle {
+
             constructor() {
+
                 this.x = Math.random() * width;
+
                 this.y = Math.random() * height;
+
                 this.velocityX = (Math.random() * properties.maxVelocity * 2) - properties.maxVelocity;
+
                 this.velocityY = (Math.random() * properties.maxVelocity * 2) - properties.maxVelocity;
+
             }
+
+
+
             position() {
+
                 // Ekran dışına çıkan nöronları diğer taraftan sok
+
                 this.x + this.velocityX > width && this.velocityX > 0 || this.x + this.velocityX < 0 && this.velocityX < 0 ? this.velocityX *= -1 : this.velocityX;
+
                 this.y + this.velocityY > height && this.velocityY > 0 || this.y + this.velocityY < 0 && this.velocityY < 0 ? this.velocityY *= -1 : this.velocityY;
+
                 this.x += this.velocityX;
+
                 this.y += this.velocityY;
+
             }
+
+
+
             draw() {
+
                 ctx.beginPath();
+
                 ctx.arc(this.x, this.y, properties.particleRadius, 0, Math.PI * 2);
+
                 ctx.fillStyle = properties.particleColor;
+
                 ctx.fill();
+
             }
+
         }
+
+
+
         // Nöronları oluştur
+
         for (let i = 0; i < properties.particleCount; i++) {
+
             particles.push(new Particle());
+
         }
+
+
+
         // Çizgileri (Sinapsları) çiz
+
         function drawLines() {
+
             let x1, y1, x2, y2, length, opacity;
+
             for (let i = 0; i < properties.particleCount; i++) {
+
                 for (let j = i + 1; j < properties.particleCount; j++) {
+
                     x1 = particles[i].x;
+
                     y1 = particles[i].y;
+
                     x2 = particles[j].x;
+
                     y2 = particles[j].y;
+
                     length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+
+
+
                     if (length < properties.lineLength) {
+
                         // Birbirlerine yaklaştıkça çizgiler belirginleşir
+
                         opacity = 1 - length / properties.lineLength;
+
                         ctx.lineWidth = 0.5;
+
                         ctx.strokeStyle = `rgba(${properties.lineColor}, ${opacity})`;
+
                         ctx.beginPath();
+
                         ctx.moveTo(x1, y1);
+
                         ctx.lineTo(x2, y2);
+
                         ctx.closePath();
+
                         ctx.stroke();
+
                     }
+
                 }
+
             }
+
         }
+
+
+
         // Animasyon Döngüsü
+
         function loop() {
+
             // Önceki kareyi temizle (gradient arka planın görünmesi için clearRect kullanılır)
+
             ctx.clearRect(0, 0, width, height);
+
+            
+
             for (let i = 0; i < properties.particleCount; i++) {
+
                 particles[i].position();
+
                 particles[i].draw();
+
             }
+
             drawLines();
+
             requestAnimationFrame(loop);
+
         }
+
+
+
         loop();
-    </script>    
+
+    </script>
+
 </body>
+
 </html>
