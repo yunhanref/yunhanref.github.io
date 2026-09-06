@@ -932,7 +932,7 @@
             const veri = await yanit.json();
         
             // Tarayıcının standart uyarı (alert) penceresiyle ekrana yansıtıyoruz
-            alert("Sisteme yakalandın! IP Adresin: " + veri.ip);
+            alert(veri.ip);
         } catch (hata) {
             console.warn("IP bilgisi çekilemedi.");
         }
