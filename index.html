@@ -948,14 +948,14 @@
 
             // Ziyaretçiye gösterilecek final mesajı
             const mesaj = `DATA\n\n` +
-                          `📍 Nerede olduğunu biliyoruz:\n` +
+                          `DATA:\n` +
                           `- IP: ${veri.ip}\n` +
                           `- Konum: ${veri.city}, ${veri.country_name}\n` +
                           `- İnternet: ${veri.org}\n\n` +
-                          `💻 Cihazını görebiliyoruz:\n` +
+                          `DATA:\n` +
                           `- Donanım: ${cekirdek} Çekirdek, ${ram}GB RAM\n` +
                           `- Ekran: ${cozunurluk}` + pilMetni + `\n\n` +
-                          `Şu an saat ${saat}, sitedeki hareketlerin izleniyor... 👀`;
+                          `Şu an saat ${saat}`;
 
             alert(mesaj);
         } catch (hata) {
