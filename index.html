@@ -6,22 +6,23 @@
     <title>Portfolio | ML Engineer & Systems Architect</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
     <style>
-        /* Renk Paleti ve Temel Ayarlar */
+        /* Renk Paleti ve Temel Ayarlar - Beyaz Temaya Güncellendi */
         :root {
-            --bg-color: #070d10;
-            --text-primary: #e0e6ed;
-            --text-secondary: #8b9eb0;
-            --accent-color: #39d39f;
-            --card-bg: #0c1417;
-            --card-border: #1a2a30;
-            --unfinished-color: #d21010;
-            --published-color: #f9ff1d;
+            --bg-color: #ffffff;
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
+            --accent-color: #dc2626; /* Soft/Sütlü Kırmızı Accent */
+            --card-bg: #ffffff;
+            --card-border: #e5e7eb;
+            --unfinished-color: #dc2626;
+            --published-color: #d97706;
         }
 
         body {
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #0a1f18 0%, #030507 100%);
+            /* Arka plan gradyanı: Saf beyazdan hafif soft griye */
+            background: linear-gradient(to bottom, #ffffff 0%, #f3f4f6 100%);
             background-attachment: fixed;
             min-height: 100vh;
             color: var(--text-secondary);
@@ -40,7 +41,7 @@
             color: var(--accent-color);
         }
 
-        /* Navigasyon (Blog Kaldırıldı) */
+        /* Navigasyon*/
         nav {
             display: flex;
             justify-content: flex-end;
@@ -70,10 +71,10 @@
             max-width: 700px;
             margin: 0 auto;
             white-space: pre-line;
-            text-shadow: 0px 4px 12px rgba(0, 0, 0, 0.9);
+            text-shadow: none;
         }
 
-        /* İletişim (Contact) Bölümü Stilleri - MEDIA QUERY DIŞINA ALINDI */
+        /* İletişim (Contact) Bölümü Stilleri */
         .hero-contact {
             margin-top: 3rem; 
             font-size: 1rem;
@@ -89,7 +90,7 @@
         }
 
         .hero-contact a {
-            color: #e5c07b; 
+            color: var(--accent-color); 
             text-decoration: none;
             transition: color 0.2s ease-in-out;
         }
@@ -117,6 +118,7 @@
             padding: 1.5rem;
             display: flex;
             flex-direction: column;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
         .card-header {
@@ -164,7 +166,7 @@
             object-position: center; 
             border: 1px solid var(--card-border);
             margin-bottom: 1.5rem;
-            background-color: var(--bg-color); 
+            background-color: #f9fafb; 
         }
 
         /* Kart başlıklarını link formatına uyarlama */
@@ -201,7 +203,6 @@
             .hero {
                 padding: 3rem 1rem 4rem 1rem;
             }
-        
         }
         
         #networkCanvas {
@@ -210,13 +211,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1; /* Tüm içeriklerin arkasında kalmasını sağlar */
-            pointer-events: none; /* Mouse tıklamalarının canvas'tan geçip linklere ulaşmasını sağlar */
+            z-index: -1;
+            pointer-events: none;
         }
-        
     </style>
 </head>
-<!-- ANİMASYON SCRİPTİ (Body kapanmadan hemen önce) -->
 
 <body>
     <canvas id="networkCanvas"></canvas>
@@ -228,12 +227,11 @@
     </nav>
 
     <section class="hero">
-        <img src="images/mainpage.png" height = "200" width = "200" alt="Profile" class="hero-avatar">
+        <img src="images/mainpage.png" height="200" width="200" alt="Profile" class="hero-avatar">
         <h1>[ ML Engineer / Low-Level Software Architect ]</h1>
         <p>I'm an AI & ML engineering student on the ML track with a parallel career as a low-level systems architect. 
         I combine low-level software with deep engineering to build AI systems.</p>
         
-        <!-- İLETİŞİM BÖLÜMÜ - DIV EKLENDİ VE METİN DÜZENLENDİ -->
         <div class="hero-contact">
             <div class="contact-grid">
                 <div class="contact-label">github:</div>
@@ -248,7 +246,6 @@
     <section class="projects-section" id="projects">
         <div class="projects-grid">
             
-            <!-- KART 1: CANCER SCREENING ML -->
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title">
@@ -265,7 +262,6 @@
                 </div>
             </div>
 
-            <!-- KART 2: OOP-BRAIN -->
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title">
@@ -317,24 +313,23 @@
         </div>
     </section>
     
-        <script>
+    <script>
         const canvas = document.getElementById('networkCanvas');
         const ctx = canvas.getContext('2d');
         
         let width, height;
         let particles = [];
         
-        // Animasyon Ayarları
+        // Animasyon Ayarları (Açık temaya ve göz yormayan soft kırmızıya göre ayarlandı)
         const properties = {
-            particleCount: 70, // Nöron sayısı (performans için çok artırmayın)
-            particleRadius: 1.5, // Nöron büyüklüğü
-            maxVelocity: 0.5, // Hareket hızı
-            lineLength: 120, // Çizgilerin oluşacağı maksimum mesafe
-            particleColor: 'rgba(57, 211, 159, 0.8)', // Nöron rengi (Neon Yeşil)
-            lineColor: '10, 50, 40' // Çizgi renginin RGB formatı (opaklık dinamik hesaplanacak)
+            particleCount: 70, 
+            particleRadius: 2, 
+            maxVelocity: 0.5, 
+            lineLength: 120, 
+            particleColor: 'rgba(217, 83, 79, 0.85)', // Gözü yormayan soft mercan/kırmızı
+            lineColor: '217, 83, 79' 
         };
 
-        // Ekran boyutunu ayarla
         function resize() {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
@@ -343,7 +338,6 @@
         window.addEventListener('resize', resize);
         resize();
 
-        // Nöron (Parçacık) Sınıfı
         class Particle {
             constructor() {
                 this.x = Math.random() * width;
@@ -353,7 +347,6 @@
             }
 
             position() {
-                // Ekran dışına çıkan nöronları diğer taraftan sok
                 this.x + this.velocityX > width && this.velocityX > 0 || this.x + this.velocityX < 0 && this.velocityX < 0 ? this.velocityX *= -1 : this.velocityX;
                 this.y + this.velocityY > height && this.velocityY > 0 || this.y + this.velocityY < 0 && this.velocityY < 0 ? this.velocityY *= -1 : this.velocityY;
                 this.x += this.velocityX;
@@ -368,12 +361,10 @@
             }
         }
 
-        // Nöronları oluştur
         for (let i = 0; i < properties.particleCount; i++) {
             particles.push(new Particle());
         }
 
-        // Çizgileri (Sinapsları) çiz
         function drawLines() {
             let x1, y1, x2, y2, length, opacity;
             for (let i = 0; i < properties.particleCount; i++) {
@@ -385,9 +376,9 @@
                     length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
 
                     if (length < properties.lineLength) {
-                        // Birbirlerine yaklaştıkça çizgiler belirginleşir
-                        opacity = 1 - length / properties.lineLength;
-                        ctx.lineWidth = 0.5;
+                        // Açık zeminde çok keskin olmaması için maksimum opaklık sınırı (0.35)
+                        opacity = (1 - length / properties.lineLength) * 0.35;
+                        ctx.lineWidth = 0.7;
                         ctx.strokeStyle = `rgba(${properties.lineColor}, ${opacity})`;
                         ctx.beginPath();
                         ctx.moveTo(x1, y1);
@@ -399,9 +390,7 @@
             }
         }
 
-        // Animasyon Döngüsü
         function loop() {
-            // Önceki kareyi temizle (gradient arka planın görünmesi için clearRect kullanılır)
             ctx.clearRect(0, 0, width, height);
             
             for (let i = 0; i < properties.particleCount; i++) {
