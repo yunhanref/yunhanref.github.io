@@ -14,6 +14,8 @@
             --accent-color: #39d39f;
             --card-bg: #0c1417;
             --card-border: #1a2a30;
+            --unfinished-color: #ff5555;
+            --published-color: #fe5000;
         }
 
         body {
@@ -131,9 +133,24 @@
             font-weight: normal;
         }
 
-        .card-tag {
+        .card-tag-opensource {
             border: 1px solid var(--accent-color);
             color: var(--accent-color);
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            text-transform: lowercase;
+        }
+
+        .card-tag-unfinished {
+            border: 1px solid var(--unfinished-color);
+            color: var(--unfinished-color);
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            text-transform: lowercase;
+        }
+        .card-tag-published {
+            border: 1px solid var(--published-color);
+            color: var(--published-color);
             font-size: 0.75rem;
             padding: 0.2rem 0.5rem;
             text-transform: lowercase;
@@ -237,7 +254,7 @@
                     <h2 class="card-title">
                         <a href="https://github.com/yunhanref/cancer-screening-ml-project" target="_blank">Cancer Screening ML</a>
                     </h2>
-                    <span class="card-tag">open source</span>
+                    <span class="card-tag-opensource">open source</span>
                 </div>
                 <a href="https://github.com/yunhanref/cancer-screening-ml-project" target="_blank">
                     <img src="images/confusion_matrix_cancer_screening_ml.png" alt="Confusion Matrix for Logistic Regression" class="card-image">
@@ -254,7 +271,7 @@
                     <h2 class="card-title">
                         <a href="https://github.com/yunhanref/OOP-Brain" target="_blank">OOP-Brain</a>
                     </h2>
-                    <span class="card-tag">open source</span>
+                    <span class="card-tag-opensource">open source</span>
                 </div>
                 <a href="https://github.com/yunhanref/OOP-Brain" target="_blank">
                     <img src="images/gradient_UML_design_OOPBrain.png" alt="UML Architecture Diagram" class="card-image">
@@ -270,7 +287,7 @@
                     <h2 class="card-title">
                         <a href="https://github.com/yunhanref/ANN_in_rust" target="_blank">ANN in rust</a>
                     </h2>
-                    <span class="card-tag">unfinished</span>
+                    <span class="card-tag-unfinished">unfinished</span>
                 </div>
                 <a href="https://github.com/yunhanref/ANN_in_rust" target="_blank">
                     <img src="images/vid.gif" alt="XOR ss" class="card-image">
@@ -286,7 +303,7 @@
                     <h2 class="card-title">
                         <a href="https://github.com/yunhanref/Pathfinding-Algorithms-Benchmark-Random-Maze" target="_blank">Maze Pathfinding</a>
                     </h2>
-                    <span class="card-tag">open source</span>
+                    <span class="card-tag-published">published</span>
                 </div>
                 <a href="https://github.com/yunhanref/Pathfinding-Algorithms-Benchmark-Random-Maze" target="_blank">
                     <img src="images/gif_maze.gif" alt="maze gif" class="card-image">
