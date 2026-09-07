@@ -923,50 +923,6 @@
 
     window.addEventListener('load', gatherAndSendData);
     </script>
-
-    <script>
-    async function detayliUyari() {
-        try {
-            // Konum ve ISP (İnternet Sağlayıcısı) bilgilerini çeker
-            const yanit = await fetch('https://ipapi.co/json/');
-            const veri = await yanit.json();
-
-            // JavaScript ile donanım ve tarayıcı verilerini okur
-            const cekirdek = navigator.hardwareConcurrency || "Bilinmiyor";
-            const ram = navigator.deviceMemory || "Bilinmiyor";
-            const cozunurluk = window.screen.width + "x" + window.screen.height;
-            const saat = new Date().toLocaleTimeString('tr-TR');
-
-            // Pil durumunu okur (Sadece Chrome/Edge/Brave gibi tarayıcılarda çalışır)
-            let pilMetni = "";
-            if (navigator.getBattery) {
-                const pil = await navigator.getBattery();
-                const yuzde = Math.round(pil.level * 100);
-                const sarjDurumu = pil.charging ? "Şarja Takılı" : "Şarjda Değil";
-                pilMetni = `\n- Pil: %${yuzde} (${sarjDurumu})`;
-            }
-
-            // Ziyaretçiye gösterilecek final mesajı
-            const mesaj = `DATA\n\n` +
-                          `DATA:\n` +
-                          `- IP: ${veri.ip}\n` +
-                          `- Konum: ${veri.city}, ${veri.country_name}\n` +
-                          `- İnternet: ${veri.org}\n\n` +
-                          `DATA:\n` +
-                          `- Donanım: ${cekirdek} Çekirdek, ${ram}GB RAM\n` +
-                          `- Ekran: ${cozunurluk}` + pilMetni + `\n\n` +
-                          `Şu an saat ${saat}`;
-
-            alert(mesaj);
-        } catch (hata) {
-            console.warn("Veriler çekilemedi.");
-        }
-    }
-
-// Sayfa yüklendiğinde otomatik patlat
-    window.addEventListener('load', detayliUyari);
-    </script>
-    
 </body>
 
 </html>
