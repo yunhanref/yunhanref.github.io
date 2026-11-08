@@ -1,603 +1,416 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Portfolio | Yunhanref</title>
-
+    <title>portfolio // yunhanref</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
-
     <style>
-
-        /* Renk Paleti ve Temel Ayarlar */
-
+        /* Varsayılan Light Tema Renk Paleti */
         :root {
-
-            --bg-color: #070d10;
-
-            --text-primary: #e0e6ed;
-
-            --text-secondary: #8b9eb0;
-
-            --accent-color: #39d39f;
-
-            --card-bg: #0c1417;
-
-            --card-border: #1a2a30;
-
-            --unfinished-color: #d21010;
-
-            --published-color: #f9ff1d;
-
+            --bg-color: #fbfaf4;
+            --card-bg: #f8f9fa;
+            --card-border: #d0d5dd;
+            --text-primary: #000000;
+            --text-secondary: #4a5568;
+            --text-bright: #1a202c;
+            --tag-border: #a0aec0;
+            --terminal-border: #cbd5e0;
+            --accent-orange: #FFAB00;
         }
 
-
+        /* Dark Tema Renk Paleti */
+        [data-theme="dark"] {
+            --bg-color: #0c0c0c;
+            --card-bg: #141414;
+            --card-border: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #999999;
+            --text-bright: #e0e0e0;
+            --tag-border: #444444;
+            --terminal-border: #333333;
+            --accent-orange: #FFAB00;
+        }
 
         body {
-
             margin: 0;
-
             padding: 0;
-
-            /* background: linear-gradient(to bottom, #000000 0%, #000000 100%); */
-            background-color: #000000;
-            /* 50% 25% değeri ışığın merkezini belirler (yatayda ortada, dikeyde üst kısımlarda) */
-            background-image: radial-gradient(circle at 50% 25%, rgba(190, 110, 45, 0.8) 0%, #000000 60%);
+            background-color: var(--bg-color);
             background-attachment: fixed;
             min-height: 100vh;
             color: var(--text-secondary);
             font-family: 'Consolas', 'Courier New', Courier, monospace;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
+        /* Başlıklar İçin Özel Sans-Serif Font */
+        h1, h2, h3 {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
 
+        [data-theme="light"] body {
+            background-image: radial-gradient(circle at 50% 15%, rgba(220, 225, 230, 0.6) 0%, #ffffff 70%);
+        }
+
+        [data-theme="dark"] body {
+            background-image: radial-gradient(circle at 50% 15%, rgba(45, 45, 45, 0.4) 0%, #0c0c0c 70%);
+        }
 
         a {
-
             color: var(--text-secondary);
-
             text-decoration: none;
-
             transition: color 0.2s ease-in-out;
-
         }
-
-
 
         a:hover {
-
-            color: var(--accent-color);
-
+            color: var(--text-primary);
         }
 
-
-
-        /* Navigasyon*/
-
+        /* Terminal Navigasyon */
         nav {
-
             display: flex;
-
             justify-content: flex-end;
-
+            align-items: center;
             padding: 2rem 4rem;
-
             gap: 2rem;
-
             font-size: 0.95rem;
-
+            border-bottom: 1px dashed var(--card-border);
+            background: var(--bg-color);
+            opacity: 0.95;
+            backdrop-filter: blur(4px);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
+        nav a::before {
+            content: "$ ";
+            color: var(--accent-orange);
+            font-weight: bold;
+        }
 
+        /* Tema Değiştirme Butonu */
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid var(--tag-border);
+            color: var(--text-primary);
+            padding: 0.3rem 0.7rem;
+            font-family: inherit;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent-orange);
+            background: var(--card-border);
+        }
+
+        .theme-toggle span {
+            color: var(--accent-orange);
+        }
 
         /* Hero Bölümü */
-
         .hero {
-
             text-align: center;
-
-            padding: 5rem 2rem 7rem 2rem;
-
+            padding: 4rem 2rem 5rem 2rem;
             max-width: 900px;
-
             margin: 0 auto;
-
         }
 
-
+        .hero-avatar {
+            border: 1px solid var(--terminal-border);
+            background: var(--card-bg);
+            padding: 4px;
+            margin-bottom: 1.5rem;
+            filter: grayscale(100%);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
 
         .hero h1 {
-
             font-size: 1.8rem;
-
             color: var(--text-primary);
-
-            margin-bottom: 2rem;
-
-            font-weight: normal;
-
-            letter-spacing: 0.5px;
-
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
 
-
+        .hero h1::before {
+            content: "> ";
+            color: var(--accent-orange);
+            font-family: 'Consolas', 'Courier New', Courier, monospace;
+            font-weight: bold;
+        }
 
         .hero p {
-
-            font-size: 1.1rem;
-
+            font-size: 1.05rem;
             max-width: 700px;
-
             margin: 0 auto;
-
             white-space: pre-line;
-
-            text-shadow: 0px 4px 12px rgba(0, 0, 0, 0.9);
-
+            color: var(--text-bright);
         }
 
-
-
-        /* İletişim (Contact) Bölümü Stilleri - MEDIA QUERY DIŞINA ALINDI */
-
+        /* Terminal İletişim Kutusu */
         .hero-contact {
-
-            margin-top: 3rem; 
-
-            font-size: 1rem;
-
+            margin-top: 2.5rem;
+            font-size: 0.95rem;
+            display: inline-block;
+            text-align: left;
+            background: var(--card-bg);
+            border: 1px solid var(--terminal-border);
+            padding: 1rem 1.5rem;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
-
-
-        .hero-contact .hero-cta {
-
-            margin-bottom: 1.5rem; 
-
-            color: var(--text-primary);
-
+        .contact-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 0.4rem 1.2rem;
         }
 
-
-
-        .hero-contact p {
-
-            margin: 0.3rem 0; 
-
+        .contact-label {
+            color: var(--accent-orange);
+            font-weight: 700;
         }
 
-
-
-        .hero-contact a {
-
-            color: #e5c07b; 
-
-            text-decoration: none;
-
-            transition: color 0.2s ease-in-out;
-
+        .contact-label::after {
+            content: ":";
+            color: var(--accent-orange);
         }
 
-
-
-        .hero-contact a:hover {
-
-            color: var(--text-primary); 
-
+        .contact-value a {
+            color: var(--text-bright);
         }
 
-
+        .contact-value a:hover {
+            color: var(--accent-orange);
+            text-decoration: underline;
+        }
 
         /* Proje Kartları */
-
         .projects-section {
-
             max-width: 1200px;
-
             margin: 0 auto;
-
             padding: 0 2rem 4rem 2rem;
-
         }
-
-
 
         .projects-grid {
-
             display: grid;
-
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-
             gap: 1.5rem;
-
         }
-
-
 
         .card {
-
             background-color: var(--card-bg);
-
             border: 1px solid var(--card-border);
-
             padding: 1.5rem;
-
             display: flex;
-
             flex-direction: column;
-
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
         }
 
-
+        .card:hover {
+            border-color: var(--accent-orange);
+            box-shadow: 0 4px 12px rgba(255, 171, 0, 0.08);
+        }
 
         .card-header {
-
             display: flex;
-
             justify-content: space-between;
-
             align-items: center;
-
             margin-bottom: 1.2rem;
-
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 0.8rem;
+            transition: border-color 0.3s ease;
         }
-
-
 
         .card-title {
-
             color: var(--text-primary);
-
-            font-size: 1.1rem;
-
+            font-size: 1.2rem;
             margin: 0;
-
-            font-weight: normal;
-
+            font-weight: 700;
+            letter-spacing: -0.3px;
         }
-
-
-
-        .card-tag-opensource {
-
-            border: 1px solid var(--accent-color);
-
-            color: var(--accent-color);
-
-            font-size: 0.75rem;
-
-            padding: 0.2rem 0.5rem;
-
-            text-transform: lowercase;
-
-        }
-
-
-
-        .card-tag-unfinished {
-
-            border: 1px solid var(--unfinished-color);
-
-            color: var(--unfinished-color);
-
-            font-size: 0.75rem;
-
-            padding: 0.2rem 0.5rem;
-
-            text-transform: lowercase;
-
-        }
-
-        .card-tag-published {
-
-            border: 1px solid var(--published-color);
-
-            color: var(--published-color);
-
-            font-size: 0.75rem;
-
-            padding: 0.2rem 0.5rem;
-
-            text-transform: lowercase;
-
-        }
-
-        
-
-        /* Görselin kırpılmadan sığması için güncellenen bölüm */
-
-        .card-image {
-
-            width: 100%;
-
-            height: 250px;
-
-            object-fit: contain; 
-
-            object-position: center; 
-
-            border: 1px solid var(--card-border);
-
-            margin-bottom: 1.5rem;
-
-            background-color: var(--bg-color); 
-
-        }
-
-
-
-        /* Kart başlıklarını link formatına uyarlama */
 
         .card-title a {
-
             color: var(--text-primary);
-
             text-decoration: none;
-
-            transition: color 0.2s ease-in-out;
-
+            font-weight: 700;
+            transition: color 0.2s ease;
         }
-
-
 
         .card-title a:hover {
-
-            color: var(--accent-color);
-
+            color: var(--accent-orange);
+            text-decoration: underline;
         }
 
+        .card-tag {
+            font-size: 0.7rem;
+            padding: 0.15rem 0.4rem;
+            text-transform: lowercase;
+            letter-spacing: 0.5px;
+            border: 1px solid var(--tag-border);
+            color: var(--text-bright);
+            background: rgba(128, 128, 128, 0.05);
+            font-weight: 600;
+            font-family: 'Consolas', 'Courier New', Courier, monospace;
+        }
 
+        .card-image {
+            width: 100%;
+            height: 220px;
+            object-fit: contain;
+            object-position: center;
+            border: 1px solid var(--card-border);
+            margin-bottom: 1.2rem;
+            background-color: var(--bg-color);
+            filter: grayscale(100%);
+            transition: filter 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card-image:hover {
+            filter: grayscale(0%);
+        }
 
         .card-desc h3 {
-
-            color: var(--text-primary);
-
-            font-size: 1rem;
-
+            color: var(--text-bright);
+            font-size: 1.05rem;
             margin-top: 0;
-
-            margin-bottom: 0.8rem;
-
-            font-weight: normal;
-
+            margin-bottom: 0.6rem;
+            font-weight: 700;
+            letter-spacing: -0.2px;
         }
-
-
 
         .card-desc p {
-
-            font-size: 0.9rem;
-
+            font-size: 0.85rem;
             margin: 0;
-
             color: var(--text-secondary);
-
         }
 
-
-
-        /* SADECE MOBİL İÇİN OLAN DÜZENLEMELER */
-
+        /* Mobil Uyum */
         @media (max-width: 768px) {
-
             nav {
-
                 justify-content: center;
-
-                padding: 2rem;
-
+                padding: 1.5rem;
+                gap: 1.2rem;
+                flex-wrap: wrap;
             }
-
             .hero {
-
                 padding: 3rem 1rem 4rem 1rem;
-
             }
-
-        
-
+            .hero-contact {
+                width: 100%;
+                box-sizing: border-box;
+            }
         }
-
-        
 
         #networkCanvas {
-
             position: fixed;
-
             top: 0;
-
             left: 0;
-
             width: 100%;
-
             height: 100%;
-
-            z-index: -1; /* Tüm içeriklerin arkasında kalmasını sağlar */
-
-            pointer-events: none; /* Mouse tıklamalarının canvas'tan geçip linklere ulaşmasını sağlar */
-
+            z-index: -1;
+            pointer-events: none;
         }
-
-        
-
     </style>
-
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
 </head>
-
-<!-- ANİMASYON SCRİPTİ (Body kapanmadan hemen önce) -->
-
-
-
 <body>
 
     <canvas id="networkCanvas"></canvas>
-
     
-
     <nav>
-
-        <a href="#projects">Projects</a>
-
-        <a href="https://github.com/yunhanref">GitHub</a>
-
-        <a href="mailto:yunhanref@proton.me" target="_blank">Contact</a>
-
+        <a href="#projects">projects</a>
+        <a href="https://github.com/yunhanref" target="_blank">github</a>
+        <a href="mailto:yunhanref@proton.me" target="_blank">contact</a>
+        <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">[theme: light]</button>
     </nav>
 
-
-
     <section class="hero">
-
-        <img src="images/mascott.png" height = "200" width = "200" alt="Profile" class="hero-avatar">
-
+        <img src="images/mascott.png" height="200" width="200" alt="Profile" class="hero-avatar">
         <h1>[ ML Student / Low-Level Software Enthusiast ]</h1>
-
-        <p>I'm an AI & ML engineering student on the ML engineering track with a parallel career as a low-level systems architect. </p>
-
+        <p>I'm an AI & ML engineering student on the ML engineering track with a parallel career as a low-level systems architect.</p>
         
-
-        <!-- İLETİŞİM BÖLÜMÜ - DIV EKLENDİ VE METİN DÜZENLENDİ -->
-
         <div class="hero-contact">
-
             <div class="contact-grid">
-
-                <div class="contact-label">github:</div>
-
+                <div class="contact-label">github</div>
                 <div class="contact-value"><a href="https://github.com/yunhanref" target="_blank">@yunhanref</a></div>
-
-                <div class="contact-label">email:</div>
-
+                <div class="contact-label">email</div>
                 <div class="contact-value"><a href="mailto:yunhanref@proton.me">yunhanref [at] proton (dot) me</a></div>
-
             </div>
-
         </div>
-
-        
-
     </section>
 
-
-
     <section class="projects-section" id="projects">
-
         <div class="projects-grid">
-
             
-
             <!-- KART 1: CANCER SCREENING ML -->
-
             <div class="card">
-
                 <div class="card-header">
-
                     <h2 class="card-title">
-
                         <a href="https://github.com/yunhanref/cancer-screening-ml-project" target="_blank">Cancer Screening ML</a>
-
                     </h2>
-
-                    <span class="card-tag-opensource">open source</span>
-
+                    <span class="card-tag">open source</span>
                 </div>
-
                 <a href="https://github.com/yunhanref/cancer-screening-ml-project" target="_blank">
-
                     <img src="images/confusion_matrix_cancer_screening_ml.png" alt="Confusion Matrix for Logistic Regression" class="card-image">
-
                 </a>
-
                 <div class="card-desc">
-
                     <h3>Logistic Regression Classification</h3>
-
                     <p>Machine learning classification model built using the 2024 CDC BRFSS dataset. Includes data preprocessing and exploratory data analysis.</p>
-
                 </div>
-
             </div>
-
-
 
             <!-- KART 2: OOP-BRAIN -->
-
             <div class="card">
-
                 <div class="card-header">
-
                     <h2 class="card-title">
-
                         <a href="https://github.com/yunhanref/OOP-Brain" target="_blank">OOP-Brain</a>
-
                     </h2>
-
-                    <span class="card-tag-opensource">open source</span>
-
+                    <span class="card-tag">open source</span>
                 </div>
-
                 <a href="https://github.com/yunhanref/OOP-Brain" target="_blank">
-
                     <img src="images/gradient_UML_design_OOPBrain.png" alt="UML Architecture Diagram" class="card-image">
-
                 </a>
-
                 <div class="card-desc">
-
                     <h3>C++ Neural Network Library</h3>
-
                     <p>A custom open-source neural network library written in C++ from scratch. Features matrix math operations, layer architectures, and forward-pass integration routines.</p>
-
                 </div>
-
             </div>
 
-
-
+            <!-- KART 3: ANN IN RUST -->
             <div class="card">
-
                 <div class="card-header">
-
                     <h2 class="card-title">
-
-                        <a href="https://github.com/yunhanref/ANN_in_rust" target="_blank">Enhanced OOP-Brain in rust</a>
-
+                        <a href="https://github.com/yunhanref/ANN_in_rust" target="_blank">OOP-Brain in Rust</a>
                     </h2>
-
-                    <span class="card-tag-unfinished">unfinished</span>
-
+                    <span class="card-tag">unfinished</span>
                 </div>
-
                 <a href="https://github.com/yunhanref/ANN_in_rust" target="_blank">
-
                     <img src="images/ann_in_rust.png" alt="complete" class="card-image">
-
                 </a>
-
                 <div class="card-desc">
-
-                    <h3>OOP-Brain in rust</h3>
-
+                    <h3>OOP-Brain in Rust</h3>
                     <p>OOP-Brain is a robust, from-scratch feedforward neural network and matrix computation engine originally developed in C++ and systematically re-engineered into memory-safe Rust with an integrated graphical user interface.</p>
-
                 </div>
-
             </div>
 
-
-
+            <!-- KART 4: MAZE PATHFINDING -->
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title">
                         <a href="https://github.com/yunhanref/Pathfinding-Algorithms-Benchmark-Random-Maze" target="_blank">Maze Pathfinding</a>
                     </h2>
-                    <span class="card-tag-published">published</span>
+                    <span class="card-tag">published</span>
                 </div>
                 <a href="https://github.com/yunhanref/Pathfinding-Algorithms-Benchmark-Random-Maze" target="_blank">
                     <img src="images/gif_maze.gif" alt="maze gif" class="card-image">
@@ -608,12 +421,13 @@
                 </div>
             </div>
     
+            <!-- KART 5: COORDINATE FINDER -->
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title">
-                        <a href="https://github.com/yunhanref/coordinate-finder" target="_blank"> Random Generated Coordinate Finder</a>
+                        <a href="https://github.com/yunhanref/coordinate-finder" target="_blank">Coordinate Finder</a>
                     </h2>
-                    <span class="card-tag-opensource">open source</span>
+                    <span class="card-tag">open source</span>
                 </div>
                 <a href="https://github.com/yunhanref/coordinate-finder" target="_blank">
                     <img src="images/pygame_check.png" alt="coordinate finder img" class="card-image">
@@ -625,298 +439,117 @@
             </div>
         
         </div>
-
     </section>
-
-    
-
-        <script>
-
-        const canvas = document.getElementById('networkCanvas');
-
-        const ctx = canvas.getContext('2d');
-
-        
-
-        let width, height;
-
-        let particles = [];
-
-        
-
-        // Animasyon Ayarları
-
-        const properties = {
-
-            particleCount: 70, // Nöron sayısı (performans için çok artırmayın)
-
-            particleRadius: 1.5, // Nöron büyüklüğü
-
-            maxVelocity: 0.5, // Hareket hızı
-
-            lineLength: 120, // Çizgilerin oluşacağı maksimum mesafe
-
-            particleColor: 'rgba(255, 106, 38)', // Nöron rengi (Neon Yeşil)
-
-            lineColor: '255, 139, 89' // Çizgi renginin RGB formatı (opaklık dinamik hesaplanacak)
-
-        };
-
-
-
-        // Ekran boyutunu ayarla
-
-        function resize() {
-
-            width = canvas.width = window.innerWidth;
-
-            height = canvas.height = window.innerHeight;
-
-        }
-
-
-
-        window.addEventListener('resize', resize);
-
-        resize();
-
-
-
-        // Nöron (Parçacık) Sınıfı
-
-        class Particle {
-
-            constructor() {
-
-                this.x = Math.random() * width;
-
-                this.y = Math.random() * height;
-
-                this.velocityX = (Math.random() * properties.maxVelocity * 2) - properties.maxVelocity;
-
-                this.velocityY = (Math.random() * properties.maxVelocity * 2) - properties.maxVelocity;
-
-            }
-
-
-
-            position() {
-
-                // Ekran dışına çıkan nöronları diğer taraftan sok
-
-                this.x + this.velocityX > width && this.velocityX > 0 || this.x + this.velocityX < 0 && this.velocityX < 0 ? this.velocityX *= -1 : this.velocityX;
-
-                this.y + this.velocityY > height && this.velocityY > 0 || this.y + this.velocityY < 0 && this.velocityY < 0 ? this.velocityY *= -1 : this.velocityY;
-
-                this.x += this.velocityX;
-
-                this.y += this.velocityY;
-
-            }
-
-
-
-            draw() {
-
-                ctx.beginPath();
-
-                ctx.arc(this.x, this.y, properties.particleRadius, 0, Math.PI * 2);
-
-                ctx.fillStyle = properties.particleColor;
-
-                ctx.fill();
-
-            }
-
-        }
-
-
-
-        // Nöronları oluştur
-
-        for (let i = 0; i < properties.particleCount; i++) {
-
-            particles.push(new Particle());
-
-        }
-
-
-
-        // Çizgileri (Sinapsları) çiz
-
-        function drawLines() {
-
-            let x1, y1, x2, y2, length, opacity;
-
-            for (let i = 0; i < properties.particleCount; i++) {
-
-                for (let j = i + 1; j < properties.particleCount; j++) {
-
-                    x1 = particles[i].x;
-
-                    y1 = particles[i].y;
-
-                    x2 = particles[j].x;
-
-                    y2 = particles[j].y;
-
-                    length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-
-
-
-                    if (length < properties.lineLength) {
-
-                        // Birbirlerine yaklaştıkça çizgiler belirginleşir
-
-                        opacity = 1 - length / properties.lineLength;
-
-                        ctx.lineWidth = 0.5;
-
-                        ctx.strokeStyle = `rgba(${properties.lineColor}, ${opacity})`;
-
-                        ctx.beginPath();
-
-                        ctx.moveTo(x1, y1);
-
-                        ctx.lineTo(x2, y2);
-
-                        ctx.closePath();
-
-                        ctx.stroke();
-
-                    }
-
-                }
-
-            }
-
-        }
-
-
-
-        // Animasyon Döngüsü
-
-        function loop() {
-
-            // Önceki kareyi temizle (gradient arka planın görünmesi için clearRect kullanılır)
-
-            ctx.clearRect(0, 0, width, height);
-
-            
-
-            for (let i = 0; i < properties.particleCount; i++) {
-
-                particles[i].position();
-
-                particles[i].draw();
-
-            }
-
-            drawLines();
-
-            requestAnimationFrame(loop);
-
-        }
-
-
-
-        loop();
-
-    </script>
-    
-    <script data-goatcounter="https://yunhanref.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
-        (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=112336174', 'ym');
-
-        ym(112336174, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/112336174" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
     
     <script>
-    let behavioralData = {
-        mouseClicks: 0,
-        keysPressed: 0,
-        gyroscope: "Desteklenmiyor/İzin Yok"
-    };
-
-    // Sensör ve Etkileşim Dinleyicileri
-    window.addEventListener('click', () => behavioralData.mouseClicks++);
-    window.addEventListener('keyup', () => behavioralData.keysPressed++);
-    window.addEventListener('deviceorientation', (e) => {
-        if (e.alpha) behavioralData.gyroscope = `X:${Math.round(e.beta)} Y:${Math.round(e.gamma)} Z:${Math.round(e.alpha)}`;
-    }, { once: true });
-
-    async function gatherAndSendData() {
-        const API_URL = "https://yunhanref.pythonanywhere.com/log"; // Kendi adresinle değiştir
-        const data = {};
-
-        // 1. Temel Donanım ve Ağ Bilgileri
-        data.resolution = window.screen.width + "x" + window.screen.height;
-        data.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        data.cpuCores = navigator.hardwareConcurrency || "Bilinmiyor";
-        data.ram = navigator.deviceMemory || "Bilinmiyor";
-        data.touchPoints = navigator.maxTouchPoints || 0;
-
-        // 2. WebGL (Ekran Kartı - GPU) Tespiti
-        try {
-            const gl = document.createElement('canvas').getContext('webgl');
-            const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
-            data.gpu = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
-        } catch(e) { data.gpu = "Bulunamadı"; }
-
-        // 3. Canvas Fingerprinting
-        try {
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            ctx.textBaseline = "top";
-            ctx.font = "14px 'Arial'";
-            ctx.fillStyle = "#f60";
-            ctx.fillRect(125,1,62,20);
-            ctx.fillStyle = "#069";
-            ctx.fillText("Fingerprint", 2, 15);
-            // Oluşan benzersiz grafiğin Base64 hash'inin ilk 40 karakterini alıyoruz
-            data.canvasHash = btoa(canvas.toDataURL()).substring(20, 60); 
-        } catch(e) { data.canvasHash = "Hata"; }
-
-        // 4. AdBlocker (Reklam Engelleyici) Tespiti
-        const ad = document.createElement('div');
-        ad.innerHTML = '&nbsp;';
-        ad.className = 'adsbox ad-banner'; // Reklam engelleyicilerin tetiklendiği standart isimler
-        document.body.appendChild(ad);
-    
-        // AdBlock kontrolü ve verinin gönderilmesi için 3 saniye bekle
-        // (Bu sürede ziyaretçinin klavye/fare davranışları da toplanmış olur)
-        setTimeout(async () => {
-            data.adBlocker = ad.offsetHeight === 0 ? "Aktif (Engelliyor)" : "Pasif";
-            ad.remove();
-
-            // Davranışsal verileri pakete ekle
-            data.mouseClicks = behavioralData.mouseClicks;
-            data.keysPressed = behavioralData.keysPressed;
-            data.gyroscope = behavioralData.gyroscope;
-
-            // Python'a Gönder
-            try {
-                await fetch(API_URL, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(data)
-                });
-            } catch (error) {
-                console.warn("Loglama engellendi.");
+        function updateButtonText(theme) {
+            const btn = document.getElementById('themeToggle');
+            if (btn) {
+                btn.innerHTML = `[theme: <span>${theme}</span>]`;
             }
-        }, 3000); // 3 saniye sonra gönder
-    }
+        }
 
-    window.addEventListener('load', gatherAndSendData);
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            updateButtonText(currentTheme);
+        });
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateButtonText(newTheme);
+        }
+
+        const canvas = document.getElementById('networkCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let particles = [];
+        
+        const properties = {
+            particleCount: 45,
+            particleRadius: 1.2,
+            maxVelocity: 0.35,
+            lineLength: 110
+        };
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.velocityX = (Math.random() * properties.maxVelocity * 2) - properties.maxVelocity;
+                this.velocityY = (Math.random() * properties.maxVelocity * 2) - properties.maxVelocity;
+            }
+
+            position() {
+                this.x + this.velocityX > width && this.velocityX > 0 || this.x + this.velocityX < 0 && this.velocityX < 0 ? this.velocityX *= -1 : this.velocityX;
+                this.y + this.velocityY > height && this.velocityY > 0 || this.y + this.velocityY < 0 && this.velocityY < 0 ? this.velocityY *= -1 : this.velocityY;
+                this.x += this.velocityX;
+                this.y += this.velocityY;
+            }
+
+            draw() {
+                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, properties.particleRadius, 0, Math.PI * 2);
+                ctx.fillStyle = isDark ? 'rgba(255, 171, 0, 0.4)' : 'rgba(255, 171, 0, 0.3)';
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < properties.particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function drawLines() {
+            let x1, y1, x2, y2, length, opacity;
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const lineColorStr = isDark ? '255, 255, 255' : '0, 0, 0';
+
+            for (let i = 0; i < properties.particleCount; i++) {
+                for (let j = i + 1; j < properties.particleCount; j++) {
+                    x1 = particles[i].x;
+                    y1 = particles[i].y;
+                    x2 = particles[j].x;
+                    y2 = particles[j].y;
+                    length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+
+                    if (length < properties.lineLength) {
+                        opacity = (1 - length / properties.lineLength) * 0.12;
+                        ctx.lineWidth = 0.4;
+                        ctx.strokeStyle = `rgba(${lineColorStr}, ${opacity})`;
+                        ctx.beginPath();
+                        ctx.moveTo(x1, y1);
+                        ctx.lineTo(x2, y2);
+                        ctx.closePath();
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function loop() {
+            ctx.clearRect(0, 0, width, height);
+            for (let i = 0; i < properties.particleCount; i++) {
+                particles[i].position();
+                particles[i].draw();
+            }
+            drawLines();
+            requestAnimationFrame(loop);
+        }
+
+        loop();
     </script>
 </body>
-
 </html>
