@@ -71,11 +71,9 @@
         /* Terminal Navigasyon */
         nav {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between; /* İkonu sola, linkleri sağa yaslar */
             align-items: center;
-            padding: 2rem 4rem;
-            gap: 2rem;
-            font-size: 0.95rem;
+            padding: 1.5rem 4rem;
             border-bottom: 1px dashed var(--card-border);
             background: var(--bg-color);
             opacity: 0.95;
@@ -85,7 +83,34 @@
             z-index: 10;
             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
-
+	.nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            font-size: 0.76rem; /* %80 küçültülmüş boyut */
+        }
+	.nav-logo {
+            display: flex;
+            align-items: center;
+        }
+	.nav-links a::before {
+            content: "$ ";
+            color: var(--accent-orange);
+            font-weight: bold;
+        }
+	.nav-logo::before {
+            content: "" !important; /* İkonun başına terminal '$' simgesi gelmesini engeller */
+        }
+	.logo-img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+	.nav-logo:hover .logo-img {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
         nav a::before {
             content: "$ ";
             color: var(--accent-orange);
@@ -329,10 +354,15 @@
     <canvas id="networkCanvas"></canvas>
     
     <nav>
-        <a href="#projects">projects</a>
-        <a href="https://github.com/yunhanref" target="_blank">github</a>
-        <a href="mailto:yunhanref@proton.me" target="_blank">contact</a>
-        <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">[theme: light]</button>
+        <a href="/" class="nav-logo">
+            <img src="/images/favicon.png" alt="Home" class="logo-img">
+        </a>
+        <div class="nav-links">
+            <a href="#projects">projects</a>
+            <a href="https://github.com/yunhanref" target="_blank">github</a>
+            <a href="mailto:yunhanref@proton.me" target="_blank">contact</a>
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">[theme: light]</button>
+        </div>
     </nav>
 
     <section class="hero">
